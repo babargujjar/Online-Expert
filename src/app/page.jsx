@@ -2,11 +2,19 @@
 import { BackgroundBeams } from "../components/ui/background-beams";
 import { HoverEffect } from "../components/ui/card-hover-effect";
 import AnimatedButton from "../components/AnimatedButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
     const [isExpanded, setIsExpanded] = useState(false);
-    
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    useEffect(() => {
+      const interval = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % myProjects.length);
+      }, 5000); 
+
+      return () => clearInterval(interval);
+    }, []);
 
     const handleToggle = () => {
       setIsExpanded(!isExpanded);
@@ -31,6 +39,39 @@ export default function Home() {
           title: "Graphic Design",
           description:
             "Our creative team delivers visually compelling designs that align with your brand and make a lasting impression.",
+        },
+      ];
+
+      const myProjects = [
+        {
+          id: 1,
+          title: "E-Commerce Website",
+          description: "An online store offering a wide range of products.",
+          technologies: ["React", "Node.js", "MongoDB"],
+          database: "MongoDB",
+          uiux: "Responsive and user-friendly design",
+          type: "Web",
+          image: "/assets/developer.jpg", 
+        },
+        {
+          id: 2,
+          title: "Fitness Tracker App",
+          description: "A mobile app to track fitness activities and goals.",
+          technologies: ["React Native", "Firebase"],
+          database: "Firebase",
+          uiux: "Interactive and intuitive interface",
+          type: "Mobile App",
+          image: "/assets/about.jpg", 
+        },
+        {
+          id: 3,
+          title: "Portfolio Website",
+          description: "A personal portfolio to showcase skills and projects.",
+          technologies: ["Next.js", "TailwindCSS"],
+          database: "None",
+          uiux: "Elegant and minimalistic design",
+          type: "Web",
+          image: "/assets/developer.jpg",
         },
       ];
     
@@ -168,6 +209,58 @@ export default function Home() {
                 <li>Graphic Design</li>
                 <li>Digital Marketing</li>
               </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div className="bg-[#0a0a0a] pt-5 pb-10 px-5">
+          <h2 className="text-white font-bold mb-5 text-center text-[30px] md:text-[50px] mt-4">
+            What we have done
+          </h2>
+          <div className="max-w-6xl mx-auto flex items-center justify-between overflow-hidden">
+            {/* Left Content */}
+            <div
+              key={myProjects[currentIndex].id}
+              className="w-1/2 transition-all duration-1000 transform"
+            >
+              <h2 className="text-white font-bold text-3xl">
+                {myProjects[currentIndex].title}
+              </h2>
+              <p className="text-zinc-400 mt-4">
+                {myProjects[currentIndex].description}
+              </p>
+              <div className="mt-4">
+                <h4 className="text-white font-semibold text-lg">
+                  Technologies:
+                </h4>
+                <ul className="list-disc list-inside text-zinc-400 text-sm">
+                  {myProjects[currentIndex].technologies.map((tech, index) => (
+                    <li key={index}>{tech}</li>
+                  ))}
+                </ul>
+              </div>
+              <p className="text-zinc-400 text-sm mt-4">
+                <strong>Database:</strong> {myProjects[currentIndex].database}
+              </p>
+              <p className="text-zinc-400 text-sm mt-2">
+                <strong>UI/UX:</strong> {myProjects[currentIndex].uiux}
+              </p>
+              <p className="text-zinc-400 text-sm mt-2">
+                <strong>Type:</strong> {myProjects[currentIndex].type}
+              </p>
+            </div>
+
+            {/* Right Image */}
+            <div
+              className="w-1/2 transition-all duration-1000 transform"
+              style={{ transform: "translateX(0)" }}
+            >
+              <img
+                src={myProjects[currentIndex].image}
+                alt={myProjects[currentIndex].title}
+                className="w-full h-96 object-cover rounded-md shadow-lg"
+              />
             </div>
           </div>
         </div>
