@@ -27,18 +27,28 @@ const page = () => {
   ];
 
   return (
-     <div className="bg-[#0a0a0a] pt-8 px-4">
-            <div className="pt-10 max-w-6xl mx-auto">
-              <h2 className="text-[#7661f3] font-semibold text-center text-[14px] sm:text-[16px] md:text-[20px]">
-                Empowering Your Business with Cutting-Edge IT Solutions
-              </h2>
-              <h2 className="text-white font-bold text-center text-[30px] md:text-[50px] mt-4">
-                What We Offer
-              </h2>
-              <HoverEffect items={projects} />
-            </div>
+    <div className="bg-[#0a0a0a] pt-8 px-4">
+      <div className="pt-10 max-w-6xl mx-auto">
+        <div className="relative py-5" >
+          <img
+            src="assets/developer.jpg" // Replace with actual image URL
+            alt="About Us Header"
+            className="w-full h-64 object-cover"
+          />
+          <div className="absolute inset-0 bg-[#0a0a0a] bg-opacity-50 flex items-center justify-center">
+            <h1 className="text-white text-4xl font-bold">Services</h1>
           </div>
-  )
+        </div>
+        <h2 className="text-[#7661f3] font-semibold text-center text-[14px] sm:text-[16px] md:text-[20px]">
+          Empowering Your Business with Cutting-Edge IT Solutions
+        </h2>
+        <h2 className="text-white font-bold text-center text-[30px] md:text-[50px] mt-4">
+          What We Offer
+        </h2>
+        <HoverEffect items={projects} />
+      </div>
+    </div>
+  );
 }
 
 export default page

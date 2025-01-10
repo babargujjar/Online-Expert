@@ -40,7 +40,7 @@ export default function Home() {
         <BackgroundBeams
           beamColor="#00ff77"
           speed={0.02}
-          size={2}
+          size={1}
           className="max-h-screen -z-10 bg-[#0a0a0a]"
         />
         <div className="flex justify-center items-center py-16 sm:py-20 md:py-24 lg:py-28 pt-16 max-h-screen  max-w-6xl mx-auto text-white  text-5xl">
@@ -89,7 +89,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="bg-[#0a0a0a] px-4">
+      <div className="bg-black px-4">
         <div className="pt-10 max-w-6xl mx-auto">
           <h2 className="text-[#7661f3] font-semibold text-center text-[14px] sm:text-[16px] md:text-[20px]">
             Empowering Your Business with Cutting-Edge IT Solutions
@@ -98,6 +98,78 @@ export default function Home() {
             What We Offer
           </h2>
           <HoverEffect items={projects} />
+        </div>
+      </div>
+      <div className="bg-black pb-5 w-full">
+        <div className="max-w-6xl mx-auto w-full bg-[#0a0a0a]  p-2 shadow-lg rounded-lg overflow-hidden">
+          <div className="p-8">
+            <div className="text-center">
+              <h2 className="text-[#7661f3] font-semibold text-[14px] sm:text-[16px] md:text-[20px]">
+                Get to Know Us
+              </h2>
+              <h2 className="text-white font-bold text-[30px] md:text-[50px] mt-4">
+                About Us
+              </h2>
+            </div>
+            <div className="w-full flex flex-col md:flex-row mt-5 justify-between  gap-2 items-center">
+              <div className="w-full">
+                <p className="text-white lg:w-3/4 leading-7 text-md">
+                  Welcome to{" "}
+                  <span className="font-semibold">
+                    Online Expert Pvt Limited
+                  </span>
+                  , your trusted partner in digital marketing, dedicated to
+                  driving your online success. We provide a comprehensive range
+                  of services designed to enhance your digital presence,
+                  increase engagement, and deliver impactful results.
+                </p>
+              </div>
+              <img
+                className="w-full mt-4 h-full rounded-md"
+                src="assets/about.jpg"
+                alt=""
+              />
+            </div>
+
+            {/* Mission & Vision Section */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+              {/* Mission Card */}
+              <div className="bg-black cursor-pointer p-6 rounded-lg shadow-md">
+                <h2 className="text-xl text-white font-bold mb-3">
+                  Our Mission
+                </h2>
+                <p className=" text-zinc-400 leading-7">
+                  Our mission is to elevate your online presence and help you
+                  achieve sustainable growth.
+                </p>
+              </div>
+
+              {/* Vision Card */}
+              <div className="bg-black cursor-pointer p-6 rounded-lg shadow-md">
+                <h2 className="text-xl text-white font-bold mb-3">
+                  Our Vision
+                </h2>
+                <p className=" text-zinc-400 leading-7">
+                  To shape a future where businesses leverage digital innovation
+                  to unlock their full potential, creating sustainable growth
+                  and meaningful connections worldwide.
+                </p>
+              </div>
+            </div>
+
+            {/* Services Section */}
+            <div className="mt-8">
+              <h2 className="text-2xl font-bold text-white mb-4">
+                Our Services
+              </h2>
+              <ul className="list-disc list-inside space-y-2 text-zinc-400">
+                <li>Web Development</li>
+                <li>SEO (Search Engine Optimization)</li>
+                <li>Graphic Design</li>
+                <li>Digital Marketing</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
