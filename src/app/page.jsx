@@ -66,7 +66,7 @@ export default function Home() {
           uiux: "Interactive and intuitive interface",
           type: "Mobile App",
           image: "/assets/about.jpg", 
-        },
+        }
       ];
     
   return (
