@@ -197,11 +197,11 @@ export default function Home() {
           <h2 className="text-white font-bold mb-5 text-center text-[25px] md:text-[45px] mt-4">
             What we have done
           </h2>
-          <div className="max-w-6xl mx-auto flex items-center justify-between overflow-hidden">
+          <div className="max-w-6xl mx-auto flex md:flex-row flex-col items-center justify-between overflow-hidden">
             {/* Left Content */}
             <div
               key={myProjects[currentIndex].id}
-              className="w-1/2 transition-all duration-1000 transform"
+              className="w-1/2 pb-3 md:pb-0 transition-all duration-1000 transform"
             >
               <h2 className="text-white font-bold text-2xl">
                 {myProjects[currentIndex].title}

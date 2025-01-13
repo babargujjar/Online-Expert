@@ -37,10 +37,12 @@ const page = () => {
     <div>
       <div className="flex min-h-full mt-10 flex-1 flex-col border justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm ">
-          <Link className="text-3xl text-center" href="/">
-            Online Expert
-          </Link>
-          <h2 className="mt-6 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
+          <div className="text-center">
+            <Link className="text-3xl font-bold text-center" href="/">
+              Online Expert ltd.
+            </Link>
+          </div>
+          <h2 className="mt-6 text-center text-xl leading-9 tracking-tight text-gray-900">
             Sign in to your account
           </h2>
         </div>

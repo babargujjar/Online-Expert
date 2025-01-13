@@ -1,8 +1,44 @@
-import React from "react";
-// import world from "../../../public/assets/worls.svg"
+"use client";
+import React, { useState } from "react";
 
 const page = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    message: "",
+  });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setError("");
+    setSuccess("");
+
+    // Basic Validation
+    if (!formData.name || !formData.email || !formData.message) {
+      setError("Please fill in all required fields.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    // Simulating API call
+    setTimeout(() => {
+      console.log("Form Submitted:", formData);
+      setIsSubmitting(false);
+      setSuccess("Your message has been sent successfully!");
+      setFormData({ name: "", email: "", company: "", message: "" });
+    }, 2000);
+  };
   return (
     <div className="preview bg-[#08090a] flex min-h-[350px] w-full justify-center p-2 sm:p-10 items-center">
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-4 py-10 md:px-6 md:py-20 lg:grid-cols-2">
@@ -160,65 +196,96 @@ const page = () => {
                 </svg>
               </div>
             </div>
-            <div className="mb-4 w-full relative z-20">
-              <label
-                className="text-neutral-300 text-sm font-medium mb-2 inline-block"
-                htmlFor="name"
-              >
-                Full name
-              </label>
-              <input
-                id="name"
-                type="text"
-                placeholder="Manu Arora"
-                className="h-10 pl-4 w-full rounded-md text-sm bg-charcoal border border-neutral-800 placeholder-neutral-500 outline-none focus:outline-none active:outline-none focus:ring-2 focus:ring-neutral-800"
-              />
+            <div className="w-full">
+              <form onSubmit={handleSubmit}>
+                <div className="mb-4 w-full relative z-20">
+                  <label
+                    className="text-neutral-300 text-sm font-medium mb-2 inline-block"
+                    htmlFor="name"
+                  >
+                    Full name
+                  </label>
+
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full rounded border-gray-300 p-2 text-gray-700 focus:border-blue-500 focus:ring-blue-500"
+                    placeholder="Enter your name"
+                    aria-label="Name"
+                    required
+                  />
+                </div>
+                <div className="mb-4 w-full relative z-20">
+                  <label
+                    className="text-neutral-300 text-sm font-medium mb-2 inline-block"
+                    htmlFor="email"
+                  >
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full rounded border-gray-300 p-2 text-gray-700 focus:border-blue-500 focus:ring-blue-500"
+                    placeholder="Enter your email"
+                    aria-label="Email"
+                    required
+                  />
+                </div>
+                <div className="mb-4 w-full relative z-20">
+                  <label
+                    className="text-neutral-300 text-sm font-medium mb-2 inline-block"
+                    htmlFor="company"
+                  >
+                    Company
+                  </label>
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    value={formData.company}
+                    onChange={handleChange}
+                    className="w-full rounded border-gray-300 p-2 text-gray-700 focus:border-blue-500 focus:ring-blue-500"
+                    placeholder="Enter your company (optional)"
+                    aria-label="Company"
+                  />
+                </div>
+                <div className="mb-4 w-full relative z-20">
+                  <label
+                    className="text-neutral-300 text-sm font-medium mb-2 inline-block"
+                    htmlFor="message"
+                  >
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    className="w-full rounded border-gray-300 p-2 text-gray-700 focus:border-blue-500 focus:ring-blue-500"
+                    placeholder="Write your message"
+                    rows="5"
+                    aria-label="Message"
+                    required
+                  ></textarea>
+                </div>
+                {error && <p className="text-red-500">{error}</p>}
+                {success && <p className="text-green-500">{success}</p>}
+
+                <button
+                  type="submit"
+                  className="w-full rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Sending..." : "Submit"}
+                </button>
+              </form>
             </div>
-            <div className="mb-4 w-full relative z-20">
-              <label
-                className="text-neutral-300 text-sm font-medium mb-2 inline-block"
-                htmlFor="email"
-              >
-                Email Address
-              </label>
-              <input
-                id="email"
-                type="email"
-                placeholder="contact@aceternity.com"
-                className="h-10 pl-4 w-full  rounded-md text-sm bg-charcoal border border-neutral-800  placeholder-neutral-500 outline-none focus:outline-none active:outline-none focus:ring-2 focus:ring-neutral-800"
-              />
-            </div>
-            <div className="mb-4 w-full relative z-20">
-              <label
-                className="text-neutral-300 text-sm font-medium mb-2 inline-block"
-                htmlFor="company"
-              >
-                Company
-              </label>
-              <input
-                id="company"
-                type="text"
-                placeholder="Your Company"
-                className="h-10 pl-4 w-full rounded-md text-sm bg-charcoal border border-neutral-800 placeholder-neutral-500 outline-none focus:outline-none active:outline-none focus:ring-2 focus:ring-neutral-800"
-              />
-            </div>
-            <div className="mb-4 w-full relative z-20">
-              <label
-                className="text-neutral-300 text-sm font-medium mb-2 inline-block"
-                htmlFor="message"
-              >
-                Message
-              </label>
-              <textarea
-                id="message"
-                rows="5"
-                placeholder="Type your message here"
-                className="pl-4 pt-4 w-full rounded-md text-sm bg-charcoal border border-neutral-800 placeholder-neutral-500 outline-none focus:outline-none active:outline-none focus:ring-2 focus:ring-neutral-800"
-              ></textarea>
-            </div>
-            <button className="group hover:-translate-y-0.5 active:scale-[0.98] bg-neutral-800 relative z-10 hover:bg-neutral-900 border border-transparent text-white text-sm md:text-sm transition font-medium duration-200 rounded-md px-4 py-2 flex items-center justify-center shadow-[0px_1px_0px_0px_#FFFFFF20_inset]">
-              Submit
-            </button>
           </div>
         </div>
       </div>
@@ -227,3 +294,160 @@ const page = () => {
 };
 
 export default page;
+// "use client"
+// import React, { useState } from "react";
+
+// const page = () => {
+//   const [formData, setFormData] = useState({
+//     name: "",
+//     email: "",
+//     company: "",
+//     message: "",
+//   });
+
+//   const [isSubmitting, setIsSubmitting] = useState(false);
+//   const [error, setError] = useState("");
+//   const [success, setSuccess] = useState("");
+
+//   const handleChange = (e) => {
+//     const { name, value } = e.target;
+//     setFormData((prev) => ({ ...prev, [name]: value }));
+//   };
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     setError("");
+//     setSuccess("");
+
+//     // Basic Validation
+//     if (!formData.name || !formData.email || !formData.message) {
+//       setError("Please fill in all required fields.");
+//       return;
+//     }
+
+//     setIsSubmitting(true);
+
+//     // Simulating API call
+//     setTimeout(() => {
+//       console.log("Form Submitted:", formData);
+//       setIsSubmitting(false);
+//       setSuccess("Your message has been sent successfully!");
+//       setFormData({ name: "", email: "", company: "", message: "" });
+//     }, 2000);
+//   };
+
+//   return (
+//     <div className="min-h-screen bg-gray-100 p-5">
+//       <h1 className="text-center text-4xl font-bold text-gray-800">
+//         Contact Us
+//       </h1>
+//       <div className="mt-10 flex flex-wrap justify-center gap-10">
+//         {/* Contact Info Section */}
+//         <div className="w-full max-w-md rounded-lg bg-white p-5 shadow-md">
+//           <h2 className="text-2xl font-semibold text-gray-700">We are here</h2>
+//           <p className="mt-4 text-gray-600">
+//             If you have any questions or need assistance, please don’t hesitate
+//             to contact us.
+//           </p>
+//           <ul className="mt-6 space-y-3">
+//             <li className="text-gray-600">
+//               <span className="font-semibold">Email:</span> contact@company.com
+//             </li>
+//             <li className="text-gray-600">
+//               <span className="font-semibold">Phone:</span> +1 (123) 456-7890
+//             </li>
+//             <li className="text-gray-600">
+//               <span className="font-semibold">Address:</span> 123 Main Street,
+//               City, Country
+//             </li>
+//           </ul>
+//         </div>
+
+//         {/* Contact Form Section */}
+//         <div className="w-full max-w-lg rounded-lg bg-white p-5 shadow-md">
+//           <form onSubmit={handleSubmit}>
+//             <div className="mb-4">
+//               <label htmlFor="name" className="block text-gray-700">
+//                 Name <span className="text-red-500">*</span>
+//               </label>
+//               <input
+//                 type="text"
+//                 id="name"
+//                 name="name"
+//                 value={formData.name}
+//                 onChange={handleChange}
+//                 className="w-full rounded border-gray-300 p-2 text-gray-700 focus:border-blue-500 focus:ring-blue-500"
+//                 placeholder="Enter your name"
+//                 aria-label="Name"
+//                 required
+//               />
+//             </div>
+
+//             <div className="mb-4">
+//               <label htmlFor="email" className="block text-gray-700">
+//                 Email <span className="text-red-500">*</span>
+//               </label>
+//               <input
+//                 type="email"
+//                 id="email"
+//                 name="email"
+//                 value={formData.email}
+//                 onChange={handleChange}
+//                 className="w-full rounded border-gray-300 p-2 text-gray-700 focus:border-blue-500 focus:ring-blue-500"
+//                 placeholder="Enter your email"
+//                 aria-label="Email"
+//                 required
+//               />
+//             </div>
+
+//             <div className="mb-4">
+//               <label htmlFor="company" className="block text-gray-700">
+//                 Company
+//               </label>
+//               <input
+//                 type="text"
+//                 id="company"
+//                 name="company"
+//                 value={formData.company}
+//                 onChange={handleChange}
+//                 className="w-full rounded border-gray-300 p-2 text-gray-700 focus:border-blue-500 focus:ring-blue-500"
+//                 placeholder="Enter your company (optional)"
+//                 aria-label="Company"
+//               />
+//             </div>
+
+//             <div className="mb-4">
+//               <label htmlFor="message" className="block text-gray-700">
+//                 Message <span className="text-red-500">*</span>
+//               </label>
+//               <textarea
+//                 id="message"
+//                 name="message"
+//                 value={formData.message}
+//                 onChange={handleChange}
+//                 className="w-full rounded border-gray-300 p-2 text-gray-700 focus:border-blue-500 focus:ring-blue-500"
+//                 placeholder="Write your message"
+//                 rows="5"
+//                 aria-label="Message"
+//                 required
+//               ></textarea>
+//             </div>
+
+//             {error && <p className="text-red-500">{error}</p>}
+//             {success && <p className="text-green-500">{success}</p>}
+
+//             <button
+//               type="submit"
+//               className="w-full rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+//               disabled={isSubmitting}
+//             >
+//               {isSubmitting ? "Sending..." : "Submit"}
+//             </button>
+//           </form>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default page;
