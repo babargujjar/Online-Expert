@@ -1,10 +1,8 @@
 "use client";
 import Link from "next/link";
-// import axios from "axios";
 import Cookies from "js-cookie";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-// import toast from "react-hot-toast";
 
 const page = () => {
  const [username, setUsername] = useState("");
@@ -24,9 +22,9 @@ const page = () => {
 
      try {
        router.push("/admin/home");
-       console.log("Redirecting to /admin/home"); // Debugging log
+       console.log("Redirecting to /admin/home");
      } catch (err) {
-       console.error("Error in router.push:", err); // Debugging log
+       console.error("Error in router.push:", err); 
      }
    } else {
      setError("Invalid username or password.");

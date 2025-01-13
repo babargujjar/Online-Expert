@@ -10,7 +10,7 @@ const projects = [
     database: "MongoDB",
     uiux: "Responsive and user-friendly design",
     type: "Web",
-    image: "/assets/developer.jpg", // Replace with actual image path
+    image: "/assets/developer.jpg", 
   },
   {
     id: 2,
@@ -20,7 +20,7 @@ const projects = [
     database: "Firebase",
     uiux: "Interactive and intuitive interface",
     type: "Mobile App",
-    image: "/assets/about.jpg", // Replace with actual image path
+    image: "/assets/about.jpg", 
   },
 ];
 

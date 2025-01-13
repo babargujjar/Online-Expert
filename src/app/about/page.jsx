@@ -4,10 +4,9 @@ const page = () => {
   return (
     <div className="bg-black min-h-screen flex flex-col items-center py-16 px-5">
       <div className="max-w-6xl w-full bg-black  p-2 shadow-lg rounded-lg overflow-hidden">
-        {/* Header Section */}
         <div className="relative">
           <img
-            src="assets/developer.jpg" // Replace with actual image URL
+            src="assets/developer.jpg" 
             alt="About Us Header"
             className="w-full h-64 object-cover"
           />
@@ -16,7 +15,6 @@ const page = () => {
           </div>
         </div>
 
-        {/* Content Section */}
         <div className="p-8">
           <p className="text-white leading-7 text-lg">
             Welcome to{" "}

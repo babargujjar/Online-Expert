@@ -35,7 +35,7 @@ const projects = [
       <div className="pt-10 max-w-6xl mx-auto">
         <div className="relative py-5" >
           <img
-            src="assets/developer.jpg" // Replace with actual image URL
+            src="assets/developer.jpg" 
             alt="About Us Header"
             className="w-full h-64 object-cover"
           />

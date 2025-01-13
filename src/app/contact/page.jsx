@@ -23,7 +23,6 @@ const page = () => {
     setError("");
     setSuccess("");
 
-    // Basic Validation
     if (!formData.name || !formData.email || !formData.message) {
       setError("Please fill in all required fields.");
       return;
@@ -31,7 +30,6 @@ const page = () => {
 
     setIsSubmitting(true);
 
-    // Simulating API call
     setTimeout(() => {
       console.log("Form Submitted:", formData);
       setIsSubmitting(false);
@@ -294,160 +292,3 @@ const page = () => {
 };
 
 export default page;
-// "use client"
-// import React, { useState } from "react";
-
-// const page = () => {
-//   const [formData, setFormData] = useState({
-//     name: "",
-//     email: "",
-//     company: "",
-//     message: "",
-//   });
-
-//   const [isSubmitting, setIsSubmitting] = useState(false);
-//   const [error, setError] = useState("");
-//   const [success, setSuccess] = useState("");
-
-//   const handleChange = (e) => {
-//     const { name, value } = e.target;
-//     setFormData((prev) => ({ ...prev, [name]: value }));
-//   };
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     setError("");
-//     setSuccess("");
-
-//     // Basic Validation
-//     if (!formData.name || !formData.email || !formData.message) {
-//       setError("Please fill in all required fields.");
-//       return;
-//     }
-
-//     setIsSubmitting(true);
-
-//     // Simulating API call
-//     setTimeout(() => {
-//       console.log("Form Submitted:", formData);
-//       setIsSubmitting(false);
-//       setSuccess("Your message has been sent successfully!");
-//       setFormData({ name: "", email: "", company: "", message: "" });
-//     }, 2000);
-//   };
-
-//   return (
-//     <div className="min-h-screen bg-gray-100 p-5">
-//       <h1 className="text-center text-4xl font-bold text-gray-800">
-//         Contact Us
-//       </h1>
-//       <div className="mt-10 flex flex-wrap justify-center gap-10">
-//         {/* Contact Info Section */}
-//         <div className="w-full max-w-md rounded-lg bg-white p-5 shadow-md">
-//           <h2 className="text-2xl font-semibold text-gray-700">We are here</h2>
-//           <p className="mt-4 text-gray-600">
-//             If you have any questions or need assistance, please don’t hesitate
-//             to contact us.
-//           </p>
-//           <ul className="mt-6 space-y-3">
-//             <li className="text-gray-600">
-//               <span className="font-semibold">Email:</span> contact@company.com
-//             </li>
-//             <li className="text-gray-600">
-//               <span className="font-semibold">Phone:</span> +1 (123) 456-7890
-//             </li>
-//             <li className="text-gray-600">
-//               <span className="font-semibold">Address:</span> 123 Main Street,
-//               City, Country
-//             </li>
-//           </ul>
-//         </div>
-
-//         {/* Contact Form Section */}
-//         <div className="w-full max-w-lg rounded-lg bg-white p-5 shadow-md">
-//           <form onSubmit={handleSubmit}>
-//             <div className="mb-4">
-//               <label htmlFor="name" className="block text-gray-700">
-//                 Name <span className="text-red-500">*</span>
-//               </label>
-//               <input
-//                 type="text"
-//                 id="name"
-//                 name="name"
-//                 value={formData.name}
-//                 onChange={handleChange}
-//                 className="w-full rounded border-gray-300 p-2 text-gray-700 focus:border-blue-500 focus:ring-blue-500"
-//                 placeholder="Enter your name"
-//                 aria-label="Name"
-//                 required
-//               />
-//             </div>
-
-//             <div className="mb-4">
-//               <label htmlFor="email" className="block text-gray-700">
-//                 Email <span className="text-red-500">*</span>
-//               </label>
-//               <input
-//                 type="email"
-//                 id="email"
-//                 name="email"
-//                 value={formData.email}
-//                 onChange={handleChange}
-//                 className="w-full rounded border-gray-300 p-2 text-gray-700 focus:border-blue-500 focus:ring-blue-500"
-//                 placeholder="Enter your email"
-//                 aria-label="Email"
-//                 required
-//               />
-//             </div>
-
-//             <div className="mb-4">
-//               <label htmlFor="company" className="block text-gray-700">
-//                 Company
-//               </label>
-//               <input
-//                 type="text"
-//                 id="company"
-//                 name="company"
-//                 value={formData.company}
-//                 onChange={handleChange}
-//                 className="w-full rounded border-gray-300 p-2 text-gray-700 focus:border-blue-500 focus:ring-blue-500"
-//                 placeholder="Enter your company (optional)"
-//                 aria-label="Company"
-//               />
-//             </div>
-
-//             <div className="mb-4">
-//               <label htmlFor="message" className="block text-gray-700">
-//                 Message <span className="text-red-500">*</span>
-//               </label>
-//               <textarea
-//                 id="message"
-//                 name="message"
-//                 value={formData.message}
-//                 onChange={handleChange}
-//                 className="w-full rounded border-gray-300 p-2 text-gray-700 focus:border-blue-500 focus:ring-blue-500"
-//                 placeholder="Write your message"
-//                 rows="5"
-//                 aria-label="Message"
-//                 required
-//               ></textarea>
-//             </div>
-
-//             {error && <p className="text-red-500">{error}</p>}
-//             {success && <p className="text-green-500">{success}</p>}
-
-//             <button
-//               type="submit"
-//               className="w-full rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-//               disabled={isSubmitting}
-//             >
-//               {isSubmitting ? "Sending..." : "Submit"}
-//             </button>
-//           </form>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default page;
