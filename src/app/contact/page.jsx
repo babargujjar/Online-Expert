@@ -75,7 +75,7 @@ const page = () => {
               <div className="absolute inset-x-0 bottom-0 mx-auto h-px w-[60%] bg-gradient-to-r from-transparent via-blue-600 to-transparent dark:h-[8px] dark:blur-sm"></div>
             </div>
           </div>
-          <h2 className="mt-9 bg-gradient-to-b from-neutral-800 to-neutral-900 bg-clip-text text-left text-xl font-bold text-transparent dark:from-neutral-200 dark:to-neutral-300 md:text-3xl lg:text-5xl">
+          <h2 className="mt-9 bg-gradient-to-b bg-clip-text text-left text-xl font-bold text-transparent from-neutral-200 to-neutral-300 md:text-3xl lg:text-5xl">
             Contact us
           </h2>
           <p className="mt-8 max-w-lg text-center text-base text-neutral-600 dark:text-neutral-400 md:text-left">

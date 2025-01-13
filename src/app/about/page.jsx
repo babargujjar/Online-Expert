@@ -2,7 +2,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="bg-black min-h-screen flex flex-col items-center py-10 mt-8 px-5">
+    <div className="bg-black min-h-screen flex flex-col items-center py-16 px-5">
       <div className="max-w-6xl w-full bg-black  p-2 shadow-lg rounded-lg overflow-hidden">
         {/* Header Section */}
         <div className="relative">
@@ -11,7 +11,7 @@ const page = () => {
             alt="About Us Header"
             className="w-full h-64 object-cover"
           />
-          <div className="absolute inset-0 black bg-opacity-50 flex items-center justify-center">
+          <div className="absolute inset-0 bg-[#0a0a0a] bg-opacity-50 flex items-center justify-center">
             <h1 className="text-white text-4xl font-bold">About Us</h1>
           </div>
         </div>
