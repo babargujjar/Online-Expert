@@ -22,7 +22,6 @@ const projects = [
     type: "Mobile App",
     image: "/assets/about.jpg", // Replace with actual image path
   },
-  // Add more projects as needed
 ];
 
 

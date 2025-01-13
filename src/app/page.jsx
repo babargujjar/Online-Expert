@@ -67,16 +67,6 @@ export default function Home() {
           type: "Mobile App",
           image: "/assets/about.jpg", 
         },
-        {
-          id: 3,
-          title: "Portfolio Website",
-          description: "A personal portfolio to showcase skills and projects.",
-          technologies: ["Next.js", "TailwindCSS"],
-          database: "None",
-          uiux: "Elegant and minimalistic design",
-          type: "Web",
-          image: "/assets/developer.jpg",
-        },
       ];
     
   return (
