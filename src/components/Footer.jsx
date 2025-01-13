@@ -4,8 +4,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="bg-[#0a0a0a] p-2">
-      <div className="theme-zinc bg-[#0a0a0a] rounded-md border border-white/[0.1] w-full">
+      <div className="theme-zinc bg-[#0a0a0a] rounded-md w-full">
         <div className="preview bg-[#0a0a0a] flex min-h-[350px] w-full justify-center p-2 sm:p-10 items-center">
           <div className="border-white/[0.1] border-t bg-[#0a0a0a] shadow-lg px-8 py-20 w-full relative overflow-hidden">
             <div className="max-w-7xl mx-auto text-sm text-neutral-500 flex sm:flex-row flex-col justify-between items-start md:px-8">
@@ -180,7 +179,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </div>
+    
   );
 };
 

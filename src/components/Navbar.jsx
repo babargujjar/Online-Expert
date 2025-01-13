@@ -37,7 +37,7 @@ const Navbar = () => {
       >
         <div className="flex justify-between items-center py-3 max-w-7xl mx-auto text-white">
           <div>
-            <Link className="text-5xl" href="/">
+            <Link className="text-3xl" href="/">
               Online Expert
             </Link>
           </div>
@@ -48,7 +48,7 @@ const Navbar = () => {
               <li>
                 <Link
                   href="/"
-                  className="group relative text-[18px] transition duration-300 ease-in-out"
+                  className="group relative text-[15px] transition duration-300 ease-in-out"
                 >
                   Home
                   <span className="absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-[#3275F8] transition-all duration-300 ease-in-out group-hover:w-full group-hover:left-0"></span>
@@ -57,7 +57,7 @@ const Navbar = () => {
               <li>
                 <Link
                   href="/about"
-                  className="group relative text-[18px] transition duration-300 ease-in-out"
+                  className="group relative text-[15px] transition duration-300 ease-in-out"
                 >
                   About Us
                   <span className="absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-[#3275F8] transition-all duration-300 ease-in-out group-hover:w-full group-hover:left-0"></span>
@@ -66,7 +66,7 @@ const Navbar = () => {
               <li>
                 <Link
                   href="/services"
-                  className="group relative text-[18px] transition duration-300 ease-in-out"
+                  className="group relative text-[15px] transition duration-300 ease-in-out"
                 >
                   Services
                   <span className="absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-[#3275F8] transition-all duration-300 ease-in-out group-hover:w-full group-hover:left-0"></span>
@@ -75,7 +75,7 @@ const Navbar = () => {
               <li>
                 <Link
                   href="/contact"
-                  className="group relative text-[18px] transition duration-300 ease-in-out"
+                  className="group relative text-[15px] transition duration-300 ease-in-out"
                 >
                   Contact Us
                   <span className="absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-[#3275F8] transition-all duration-300 ease-in-out group-hover:w-full group-hover:left-0"></span>
@@ -84,7 +84,7 @@ const Navbar = () => {
               <li>
                 <Link
                   href="/work"
-                  className="group relative text-[18px] transition duration-300 ease-in-out"
+                  className="group relative text-[15px] transition duration-300 ease-in-out"
                 >
                   Our Works
                   <span className="absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-[#3275F8] transition-all duration-300 ease-in-out group-hover:w-full group-hover:left-0"></span>
