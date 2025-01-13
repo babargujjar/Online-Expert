@@ -74,7 +74,7 @@ const Footer = () => {
                   </ul>
                 </div>
                 <div className="flex justify-center space-y-4 flex-col">
-                  <p className="transition-colors hover:text-neutral-800 text-white font-semibold">
+                  <p className="transition-colors cursor-pointer hover:text-neutral-800 text-white font-semibold">
                     Socials
                   </p>
                   <ul className="list-none space-y-4">
@@ -113,7 +113,7 @@ const Footer = () => {
                   </ul>
                 </div>
                 <div className="flex justify-center space-y-4 flex-col">
-                  <p className="transition-colors hover:text-neutral-800 text-white font-semibold">
+                  <p className="transition-colors cursor-pointer hover:text-neutral-800 text-white font-semibold">
                     Legal
                   </p>
                   <ul className="list-none space-y-4">
@@ -144,7 +144,7 @@ const Footer = () => {
                   </ul>
                 </div>
                 <div className="flex justify-center space-y-4 flex-col">
-                  <p className="transition-colors hover:text-neutral-800 text-white  font-demibold">
+                  <p className="transition-colors cursor-pointer hover:text-neutral-800 text-white  font-demibold">
                     Register
                   </p>
                   <ul className="list-none space-y-4">
