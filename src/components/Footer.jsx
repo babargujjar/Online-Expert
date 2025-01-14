@@ -33,7 +33,7 @@ const Footer = () => {
                 </div>
               </div>
               <div className="grid grid-cols-2 lg:grid-cols-4 text-white gap-10 items-start mt-10 sm:mt-0 md:mt-0">
-                <div className="flex text-white justify-center space-y-4 flex-col w-full">
+                {/* <div className="flex text-white justify-center space-y-4 flex-col w-full">
                   <p className="transition-colors cursor-pointer hover:text-neutral-800 font-semibold">
                     
                     services
@@ -72,7 +72,7 @@ const Footer = () => {
                       </Link>
                     </li>
                   </ul>
-                </div>
+                </div> */}
                 <div className="flex justify-center space-y-4 flex-col">
                   <p className="transition-colors cursor-pointer hover:text-neutral-800 text-white font-semibold">
                     Socials
