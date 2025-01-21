@@ -27,9 +27,9 @@ const projects = [
 
 const Page = () => {
   return (
-    <div className="bg-[#0a0a0a] min-h-screen py-10 px-7">
+    <div className="bg-white min-h-screen py-10 px-7">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-[#7661f3] mt-9 font-bold text-center text-2xl md:text-4xl">
+        <h1 className="text-green-500 mt-9 font-bold text-center text-2xl md:text-4xl">
           Our Projects
         </h1>
         <p className="text-zinc-400 text-center text-sm md:text-lg mt-2">

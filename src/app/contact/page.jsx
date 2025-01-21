@@ -38,9 +38,9 @@ const page = () => {
     }, 2000);
   };
   return (
-    <div className="preview bg-[#08090a] flex min-h-[350px] w-full justify-center p-2 sm:p-10 items-start">
+    <div className="preview bg-white flex min-h-[350px] w-full justify-center p-2 sm:p-10 items-start">
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-4 md:px-6 md:py-20 lg:grid-cols-2">
-        <div className="relative flex flex-col items-center overflow-hidden lg:items-start">
+        <div className="relative lg:pt-16 flex flex-col items-center overflow-hidden lg:items-start">
           <div className="flex items-start justify-start">
             <div className="relative h-14 w-14 rounded-md bg-gradient-to-b from-gray-50 to-neutral-200 p-[4px] flex items-center justify-center overflow-hidden">
               <div className="relative z-20 h-full w-full rounded-[5px] bg-gray-50 flex items-center justify-center overflow-hidden">
@@ -73,24 +73,20 @@ const page = () => {
               <div className="absolute inset-x-0 bottom-0 mx-auto h-px w-[60%] bg-gradient-to-r from-transparent via-blue-600 to-transparent dark:h-[8px] dark:blur-sm"></div>
             </div>
           </div>
-          <h2 className="mt-5 bg-gradient-to-b bg-clip-text text-left text-xl font-bold text-transparent from-neutral-200 to-neutral-300 md:text-3xl lg:text-5xl">
+          <h2 className="mt-5 bg-gradient-to-b bg-clip-text text-left text-xl font-bold text-transparent from-green-200 to-green-500 md:text-3xl lg:text-5xl">
             Contact us
           </h2>
-          <p className="mt-8 max-w-lg text-center text-base text-neutral-600 dark:text-neutral-400 md:text-left">
+          <p className="mt-8 max-w-lg text-center text-base text-neutral-600 md:text-left">
             We are always looking for ways to improve our products and services.
             Contact us and let us know how we can help you.
           </p>
           <div className="mt-10 hidden flex-col items-center gap-4 md:flex-row lg:flex">
-            <p className="text-sm text-neutral-500 dark:text-neutral-400">
+            <p className="text-md text-black ">
               contact@yoursaas.ai
             </p>
             <div className="h-1 w-1 rounded-full bg-neutral-500 dark:bg-neutral-400"></div>
-            <p className="text-sm text-neutral-500 dark:text-neutral-400">
+            <p className="text-md text-black">
               +92 (800) 123 XX21
-            </p>
-            <div className="h-1 w-1 rounded-full bg-neutral-500 dark:bg-neutral-400"></div>
-            <p className="text-sm text-neutral-500 dark:text-neutral-400">
-              support@yoursaas.ai
             </p>
           </div>
           <div className="div relative mt-20 flex w-[600px] flex-shrink-0 -translate-x-10 items-center justify-center [perspective:800px] [transform-style:preserve-3d] sm:-translate-x-0 lg:-translate-x-32">
@@ -98,38 +94,11 @@ const page = () => {
               className="pointer-events-none absolute z-[60] flex h-40 w-96 items-center justify-center opacity-100 transition duration-500 right-1 top-0"
               style={{ transform: "translateZ(1px)" }}
             >
-              <div className="h-full w-full">
-                <div className="absolute inset-x-0 top-0 z-20 mx-auto inline-block w-fit rounded-lg bg-neutral-200 px-2 py-1 text-xs font-normal text-neutral-700 dark:bg-neutral-800 dark:text-white">
-                  We are here
-                  <span className="absolute -bottom-0 left-[1.125rem] h-px w-[calc(100%-2.25rem)] bg-gradient-to-r from-blue-400/0 via-blue-400/90 to-blue-400/0 transition-opacity duration-500"></span>
-                </div>
-                <div
-                  className="absolute left-1/2 top-1/2 ml-[0.09375rem] mt-4 -translate-x-1/2 -translate-y-1/2"
-                  style={{
-                    perspective: "800px",
-                    transform: "rotateX(70deg) translateZ(0px)",
-                  }}
-                >
-                  {/* Your inner content */}
-                </div>
-                <div className="absolute bottom-1/2 right-1/2 h-20 w-px translate-y-[14px] bg-gradient-to-b from-transparent to-blue-500 blur-[2px]"></div>
-              </div>
             </div>
-            {/* <img
-              alt="world map"
-              loading="lazy"
-              width="300"
-              height="300"
-              // decoding="async"
-              // data-nimg="1"
-              // className="[transform:rotateX(45deg)_translateZ(0px)] dark:invert border border-red-500 dark:filter"
-              src="/assets/world.svg"
-              // style={{ color: "transparent" }}
-            /> */}
           </div>
         </div>
-        <div className="relative bg-[#08090a] flex  flex-col justify-center overflow-hidden py-3 sm:py-0">
-          <div className="flex flex-col items-start gap-4 max-w-2xl w-full mx-auto bg-gradient-to-b from-neutral-900 to-neutral-950 p-10 rounded-3xl relative overflow-hidden">
+        <div className="relative flex  flex-col justify-center overflow-hidden py-3 sm:py-0">
+          <div className="flex flex-col items-start gap-4 max-w-2xl w-full mx-auto bg-gradient-to-b from-green-700 to-green-800 p-10 rounded-3xl relative overflow-hidden">
             <div className="pointer-events-none absolute left-1/2 top-0 -ml-20 -mt-2 h-full w-full [mask-image:linear-gradient(white,transparent)]">
               <div className="absolute inset-0 bg-gradient-to-r [mask-image:radial-gradient(farthest-side_at_top,white,transparent)] from-zinc-900/30 to-zinc-900/30 opacity-100">
                 <svg

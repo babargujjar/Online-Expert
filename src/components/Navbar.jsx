@@ -115,7 +115,7 @@ const Navbar = () => {
                 viewBox="0 0 24 24"
                 strokeWidth="1.5"
                 stroke="currentColor"
-                className="w-8 h-8 text-white"
+                className="w-8 h-8 text-black"
               >
                 <path
                   strokeLinecap="round"
@@ -130,7 +130,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-0 right-0 h-[80%] bg-[#0a0a0a]/30 backdrop-blur-md shadow-lg z-50 w-[40%] md:w-[40%] transform transition-transform duration-500 ${
+        className={`fixed top-0 right-0 h-[80%] bg-[#0a0a0a]/30 backdrop-blur-md shadow-lg z-50 w-[50%] md:w-[40%] transform transition-transform duration-500 ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
