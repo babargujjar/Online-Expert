@@ -6,6 +6,7 @@ const page = () => {
     name: "",
     email: "",
     company: "",
+    file:"",
     message: "",
   });
 
@@ -81,24 +82,19 @@ const page = () => {
             Contact us and let us know how we can help you.
           </p>
           <div className="mt-10 hidden flex-col items-center gap-4 md:flex-row lg:flex">
-            <p className="text-md text-black ">
-              contact@yoursaas.ai
-            </p>
+            <p className="text-md cursor-pointer text-black ">contact@onlineexpert.pk</p>
             <div className="h-1 w-1 rounded-full bg-neutral-500 dark:bg-neutral-400"></div>
-            <p className="text-md text-black">
-              +92 (800) 123 XX21
-            </p>
+            <p className="text-md text-black">+92 (321) 811 9090</p>
           </div>
           <div className="div relative mt-20 flex w-[600px] flex-shrink-0 -translate-x-10 items-center justify-center [perspective:800px] [transform-style:preserve-3d] sm:-translate-x-0 lg:-translate-x-32">
             <div
               className="pointer-events-none absolute z-[60] flex h-40 w-96 items-center justify-center opacity-100 transition duration-500 right-1 top-0"
               style={{ transform: "translateZ(1px)" }}
-            >
-            </div>
+            ></div>
           </div>
         </div>
         <div className="relative flex  flex-col justify-center overflow-hidden py-3 sm:py-0">
-          <div className="flex flex-col items-start gap-4 max-w-2xl w-full mx-auto bg-gradient-to-b from-green-700 to-green-800 p-10 rounded-3xl relative overflow-hidden">
+          <div className="flex flex-col items-start gap-4 max-w-2xl w-full mx-auto bg-gradient-to-b from-green-700 to-green-800 px-10 py-8 rounded-3xl relative overflow-hidden">
             <div className="pointer-events-none absolute left-1/2 top-0 -ml-20 -mt-2 h-full w-full [mask-image:linear-gradient(white,transparent)]">
               <div className="absolute inset-0 bg-gradient-to-r [mask-image:radial-gradient(farthest-side_at_top,white,transparent)] from-zinc-900/30 to-zinc-900/30 opacity-100">
                 <svg
@@ -236,10 +232,25 @@ const page = () => {
                     onChange={handleChange}
                     className="w-full rounded border-gray-300 p-2 text-gray-700 focus:border-blue-500 focus:ring-blue-500"
                     placeholder="Write your message"
-                    rows="4"
+                    rows="3"
                     aria-label="Message"
                     required
                   ></textarea>
+                  <div className="mb-3 w-full relative z-20">
+                    <label
+                      htmlFor="file"
+                      className="w-full flex items-center justify-center border border-gray-300 rounded bg-white p-2 text-gray-700 cursor-pointer focus-within:border-blue-500 focus-within:ring-blue-500"
+                    >
+                      {formData.file || "Upload a file"}{" "}
+                      <input
+                        type="file"
+                        id="file"
+                        name="file"
+                        onChange={handleChange}
+                        className="hidden" // Hide default input
+                      />
+                    </label>
+                  </div>
                 </div>
                 {error && <p className="text-red-500">{error}</p>}
                 {success && <p className="text-green-500">{success}</p>}

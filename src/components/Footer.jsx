@@ -33,7 +33,7 @@ const Footer = () => {
                   <li>
                     <Link
                       className="transition-colors hover:text-green-300"
-                      href="/contact"
+                      href="https://www.facebook.com/onlineexpert.globalservices"
                     >
                       Facebook
                     </Link>
@@ -57,7 +57,7 @@ const Footer = () => {
                   <li>
                     <Link
                       className="transition-colors hover:text-green-300"
-                      href="/services"
+                      href="https://www.linkedin.com/company/online-expert-global/?viewAsMember=true"
                     >
                       LinkedIn
                     </Link>
