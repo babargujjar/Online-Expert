@@ -31,23 +31,12 @@ const projects = [
 ];
 
   return (
-    <div className="bg-black pt-8 px-4">
+    <div className="bg-white pt-8 px-4"
+    >
       <div className="pt-10 max-w-6xl mx-auto">
-        <div className="relative py-5" >
-          <img
-            src="assets/developer.jpg" 
-            alt="About Us Header"
-            className="w-full h-64 object-cover"
-          />
-          <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-            <h1 className="text-white text-4xl font-bold">Services</h1>
-          </div>
-        </div>
-        <h2 className="text-[#7661f3] font-semibold text-center text-[14px] sm:text-[16px] md:text-[20px]">
-          Empowering Your Business with Cutting-Edge IT Solutions
-        </h2>
-        <h2 className="text-white font-bold text-center text-[30px] md:text-[50px] mt-4">
-          What We Offer
+        <h2 className="text-green-700 mt-3 font-semibold text-center text-[14px] sm:text-[16px] md:text-[20px]">
+          Empowering you to elevate your online presence and help you achieve
+          sustainable growth.
         </h2>
         <HoverEffect items={projects} />
       </div>

@@ -3,19 +3,9 @@ import React from "react";
 const page = () => {
   return (
     <div className="bg-black min-h-screen flex flex-col items-center py-16 px-5">
-      <div className="max-w-6xl w-full bg-black  p-2 shadow-lg rounded-lg overflow-hidden">
-        <div className="relative">
-          <img
-            src="assets/developer.jpg" 
-            alt="About Us Header"
-            className="w-full h-64 object-cover"
-          />
-          <div className="absolute inset-0 bg-[#0a0a0a] bg-opacity-50 flex items-center justify-center">
-            <h1 className="text-white text-4xl font-bold">About Us</h1>
-          </div>
-        </div>
-
-        <div className="p-8">
+      <div className="max-w-6xl w-full bg-black shadow-lg rounded-lg overflow-hidden">
+        <div className="p-4">
+          <h2 className="text-3xl text-white mb-2">About Us</h2>
           <p className="text-white leading-7 text-lg">
             Welcome to{" "}
             <span className="font-semibold">Online Expert Pvt Limited</span>,
@@ -24,19 +14,17 @@ const page = () => {
             designed to enhance your digital presence, increase engagement, and
             deliver impactful results.
           </p>
-          <p className="mt-4 text-white leading-7 text-lg">
+          <p className="mt-2 text-white leading-7 text-lg">
             Whether you’re a startup or an established business, our customized
             solutions are tailored to meet your unique objectives. Backed by a
             team of creative minds, data-driven strategies, and cutting-edge
             tools, we ensure measurable success across all digital platforms.
-            Let us guide you through the evolving digital landscape and help you
-            achieve your business goals.
           </p>
 
           {/* Mission & Vision Section */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
             {/* Mission Card */}
-            <div className="bg-[#0a0a0a] cursor-pointer p-6 rounded-lg shadow-md">
+            <div className="bg-[#0a0a0a] cursor-pointer p-5 rounded-lg shadow-md">
               <h2 className="text-xl text-white font-bold mb-3">Our Mission</h2>
               <p className=" text-zinc-400 leading-7">
                 Our mission is to elevate your online presence and help you
@@ -45,7 +33,7 @@ const page = () => {
             </div>
 
             {/* Vision Card */}
-            <div className="bg-[#0a0a0a] cursor-pointer p-6 rounded-lg shadow-md">
+            <div className="bg-[#0a0a0a] cursor-pointer p-5 rounded-lg shadow-md">
               <h2 className="text-xl text-white font-bold mb-3">Our Vision</h2>
               <p className=" text-zinc-400 leading-7">
                 To shape a future where businesses leverage digital innovation
@@ -56,9 +44,9 @@ const page = () => {
           </div>
 
           {/* Services Section */}
-          <div className="mt-8">
-            <h2 className="text-2xl font-bold text-white mb-4">Our Services</h2>
-            <ul className="list-disc list-inside space-y-2 text-zinc-400">
+          <div className="mt-2 w-full">
+            <h2 className="text-2xl font-bold text-white mb-2">Our Services</h2>
+            <ul className="list-disc list-inside space-y-1 text-zinc-400">
               <li>Web Development</li>
               <li>SEO (Search Engine Optimization)</li>
               <li>Graphic Design</li>

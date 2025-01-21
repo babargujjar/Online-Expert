@@ -71,41 +71,48 @@ export default function Home() {
     
   return (
     <div>
-      <div className="relative px-4 ">
-        <BackgroundBeams
-          beamColor="#00ff77"
-          speed={0.02}
-          size={1}
-          className="max-h-screen -z-10 bg-[#0a0a0a]"
-        />
-        <div className="flex justify-center items-center py-16 h-screen sm:py-20 md:py-24 lg:py-28 pt-16 max-h-screen  max-w-6xl mx-auto text-white  text-5xl">
-          <div className="text-center w-full">
-            <h2 className="text-2xl flex flex-col gap-3 md:text-4xl sm:text-3xl lg:text-5xl font-bold mb-10 tracking-tight leading-snug">
-              <p>Empowering Your Business</p>{" "}
-              <>with Innovative Online Solutions</>
-            </h2>
-            <div className="leading-6 ">
-              <div className="flex text-[13px] md:text-[16px] justify-center items-center">
-                <p>
-                  Whether you're a startup or an established business, we are{" "}
-                  <br /> here to help you achieve your business goals through{" "}
-                  technology...
-                </p>
-              </div>
-              <div className="mt-8 text-[16px]">
-                <AnimatedButton text="Let's Get started" href="/" />
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="bg-white pt-9 px-4">
+  <div className="pt-10 max-w-6xl mx-auto">
+    <h2 className="text-green-600 text-center text-[13px] sm:text-[15px] md:text-[18px] font-semibold">
+      Empowering you to elevate your online presence and help you achieve
+      sustainable growth.
+    </h2>
+    <HoverEffect items={projects} />
+  </div>
       </div>
-      <div className="bg-black px-4">
+      <div className="bg-gray-100 pb-5 w-full">
+  <div className="max-w-6xl mx-auto w-full p-2 shadow-lg rounded-lg overflow-hidden">
+    <div className="p-4">
+      <div className="text-center mb-6">
+        <h2 className="text-green-700 font-bold text-[25px] md:text-[45px]">
+          About Us
+        </h2>
+      </div>
+      <div className="w-full flex flex-col md:flex-row justify-between gap-2 items-start">
+        <div className="w-full pt-5">
+          <p className="text-gray-700 lg:w-3/4 leading-7 text-[16px]">
+            Welcome to{" "}
+            <span className="font-semibold text-green-700">
+              Online Expert Pvt Limited
+            </span>
+            , your trusted partner in digital marketing, dedicated to driving
+            your online success.
+          </p>
+        </div>
+        <img
+          className="w-full h-full rounded-md"
+          src="assets/about.jpg"
+          alt=""
+        />
+      </div>
+      {/* Other sections */}
+   
+
+      {/* <div className="bg-black pt-9 px-4">
         <div className="pt-10 max-w-6xl mx-auto">
           <h2 className="text-[#534b81] text-center text-[13px] sm:text-[15px] md:text-[18px]">
-            Empowering Your Business with Cutting-Edge IT Solutions
-          </h2>
-          <h2 className="text-white font-bold text-center text-[25px] md:text-[45px] ">
-            What We Offer
+            Empowering you to elevate your online presence and help you achieve
+            sustainable growth.
           </h2>
           <HoverEffect items={projects} />
         </div>
@@ -114,9 +121,6 @@ export default function Home() {
         <div className="max-w-6xl mx-auto w-full  p-2 shadow-lg rounded-lg overflow-hidden">
           <div className="p-4">
             <div className="text-center mb-6">
-              <h2 className="text-[#534b81] text-[13px] sm:text-[15px] md:text-[18px]">
-                Get to Know Us
-              </h2>
               <h2 className="text-white font-bold text-[25px] md:text-[45px]">
                 About Us
               </h2>
@@ -144,22 +148,22 @@ export default function Home() {
             {/* Mission & Vision Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
               {/* Mission Card */}
-              <div className="bg-[#0a0a0a] cursor-pointer p-6 rounded-lg shadow-md">
-                <h2 className="text-xl text-white font-bold mb-3">
+              <div className="bg-white cursor-pointer p-6 rounded-lg shadow-md">
+                <h2 className="text-xl text-green-500 font-bold mb-3">
                   Our Mission
                 </h2>
-                <p className=" text-zinc-400 leading-7">
+                <p className=" text-black leading-7">
                   Our mission is to elevate your online presence and help you
                   achieve sustainable growth.
                 </p>
               </div>
 
               {/* Vision Card */}
-              <div className="bg-[#0a0a0a] cursor-pointer p-6 rounded-lg shadow-md">
-                <h2 className="text-xl text-white font-bold mb-3">
+              <div className="bg-white cursor-pointer p-6 rounded-lg shadow-md">
+                <h2 className="text-xl text-green-500 font-bold mb-3">
                   Our Vision
                 </h2>
-                <p className=" text-zinc-400 leading-7">
+                <p className=" text-black leading-7">
                   To shape a future where businesses leverage digital innovation
                   to unlock their full potential, creating sustainable growth
                   and meaningful connections worldwide.
@@ -169,10 +173,10 @@ export default function Home() {
 
             {/* Services Section */}
             <div className="mt-8">
-              <h2 className="text-2xl font-bold text-white mb-4">
+              <h2 className="text-2xl font-bold text-black mb-4">
                 Our Services
               </h2>
-              <ul className="list-disc list-inside space-y-2 text-zinc-400">
+              <ul className="list-disc list-inside space-y-2 text-black">
                 <li>Web Development</li>
                 <li>SEO (Search Engine Optimization)</li>
                 <li>Graphic Design</li>
@@ -182,13 +186,12 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div>
+      {/* <div>
         <div className=" bg-[#0a0a0a] pt-5 pb-10 px-5">
           <h2 className="text-white font-bold mb-5 text-center text-[25px] md:text-[45px] mt-4">
             What we have done
           </h2>
           <div className="max-w-6xl mx-auto flex md:flex-row flex-col items-center justify-between overflow-hidden">
-            {/* Left Content */}
             <div
               key={myProjects[currentIndex].id}
               className="w-1/2 pb-3 md:pb-0 transition-all duration-1000 transform"
@@ -220,7 +223,6 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Right Image */}
             <div
               className="w-1/2 transition-all duration-1000 transform"
               style={{ transform: "translateX(0)" }}
@@ -233,8 +235,58 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </div>  */}
+      <div>
+  <div className="bg-white  pt-5 pb-10 px-5">
+    <h2 className="text-green-500 font-bold mb-5 text-center text-[25px] md:text-[45px] mt-4">
+      What We Have Done
+    </h2>
+    <div className="max-w-6xl mx-auto flex md:flex-row flex-col items-center justify-between overflow-hidden">
+      {/* Left Content */}
+      <div
+        key={myProjects[currentIndex].id}
+        className="w-full md:w-1/2 pb-3 md:pb-0 transition-all duration-1000 transform"
+      >
+        <h2 className="text-black font-bold text-2xl">
+          {myProjects[currentIndex].title}
+        </h2>
+        <p className="text-black mt-4 leading-relaxed">
+          {myProjects[currentIndex].description}
+        </p>
+        <div className="mt-4">
+          <h4 className="text-green-400 font-semibold text-lg">Technologies:</h4>
+          <ul className="list-disc list-inside text-black text-sm">
+            {myProjects[currentIndex].technologies.map((tech, index) => (
+              <li key={index}>{tech}</li>
+            ))}
+          </ul>
+        </div>
+        <p className="text-black text-sm mt-4">
+          <strong>Database:</strong> {myProjects[currentIndex].database}
+        </p>
+        <p className="text-black text-sm mt-2">
+          <strong>UI/UX:</strong> {myProjects[currentIndex].uiux}
+        </p>
+        <p className="text-black text-sm mt-2">
+          <strong>Type:</strong> {myProjects[currentIndex].type}
+        </p>
+      </div>
+
+      {/* Right Image */}
+      <div
+        className="w-full md:w-1/2 transition-all duration-1000 transform"
+        style={{ transform: "translateX(0)" }}
+      >
+        <img
+          src={myProjects[currentIndex].image}
+          alt={myProjects[currentIndex].title}
+          className="w-full h-96 object-cover rounded-md shadow-lg"
+        />
       </div>
     </div>
+  </div>
+</div>
+</div>
   );
 }
 

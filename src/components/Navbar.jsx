@@ -27,17 +27,22 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-[#0a0a0a] sticky top-0 z-30 px-4">
+    <div className="bg-white sticky top-0 z-30 px-4">
       <div
         className={`fixed px-4 top-0 left-1/2 transform -translate-x-1/2 z-50 w-full ${
           isScrolled
-            ? "bg-[#0a0a0a]/30 backdrop-blur-md shadow-lg w-[90%] mt-3 lg:w-[90%] rounded-lg"
-            : "bg-[#0a0a0a] w-full"
+            ? "bg-green-600/80 backdrop-blur-md shadow-lg w-[90%] mt-3 lg:w-[90%] rounded-lg"
+            : "bg-white w-full"
         } transition-all duration-1000`}
       >
         <div className="flex justify-between items-center py-3 max-w-7xl mx-auto text-white">
           <div>
-            <Link className="text-3xl" href="/">
+            <Link
+              className={`text-3xl ${
+                isScrolled ? "text-white" : "text-green-600"
+              } `}
+              href="/"
+            >
               Online Expert
             </Link>
           </div>
@@ -48,7 +53,7 @@ const Navbar = () => {
               <li>
                 <Link
                   href="/"
-                  className="group relative text-[15px] transition duration-300 ease-in-out"
+                  className="group relative text-[15px] text-black transition duration-300 ease-in-out"
                 >
                   Home
                   <span className="absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-[#3275F8] transition-all duration-300 ease-in-out group-hover:w-full group-hover:left-0"></span>
@@ -57,7 +62,7 @@ const Navbar = () => {
               <li>
                 <Link
                   href="/about"
-                  className="group relative text-[15px] transition duration-300 ease-in-out"
+                  className="group relative text-[15px] text-black transition duration-300 ease-in-out"
                 >
                   About Us
                   <span className="absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-[#3275F8] transition-all duration-300 ease-in-out group-hover:w-full group-hover:left-0"></span>
@@ -66,7 +71,7 @@ const Navbar = () => {
               <li>
                 <Link
                   href="/services"
-                  className="group relative text-[15px] transition duration-300 ease-in-out"
+                  className="group relative text-[15px] text-black transition duration-300 ease-in-out"
                 >
                   Services
                   <span className="absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-[#3275F8] transition-all duration-300 ease-in-out group-hover:w-full group-hover:left-0"></span>
@@ -74,19 +79,19 @@ const Navbar = () => {
               </li>
               <li>
                 <Link
-                  href="/contact"
-                  className="group relative text-[15px] transition duration-300 ease-in-out"
+                  href="/work"
+                  className="group relative text-[15px] text-black transition duration-300 ease-in-out"
                 >
-                  Contact Us
+                  Our Works
                   <span className="absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-[#3275F8] transition-all duration-300 ease-in-out group-hover:w-full group-hover:left-0"></span>
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/work"
-                  className="group relative text-[15px] transition duration-300 ease-in-out"
+                  href="/contact"
+                  className="group relative text-[15px] text-black transition duration-300 ease-in-out"
                 >
-                  Our Works
+                  Contact Us
                   <span className="absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-[#3275F8] transition-all duration-300 ease-in-out group-hover:w-full group-hover:left-0"></span>
                 </Link>
               </li>
@@ -94,7 +99,11 @@ const Navbar = () => {
           </div>
 
           <div className="hidden lg:flex">
-            <AnimatedButton text="Reach Us" href="/contact" />
+            <AnimatedButton
+              text="Reach Us"
+              isScrolled={isScrolled}
+              href="/contact"
+            />
           </div>
 
           {/* Mobile Menu Icon */}
