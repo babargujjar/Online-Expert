@@ -33,8 +33,8 @@ const projects = [
   return (
     <div className="bg-white pt-8 px-4"
     >
-      <div className="pt-10 max-w-6xl mx-auto">
-        <h2 className="text-green-600 mt-3 font-semibold text-center text-[14px] sm:text-[16px] md:text-[20px]">
+      <div className="pt-9 max-w-6xl mx-auto">
+        <h2 className="text-green-600 mt-1 font-semibold text-center text-[14px] sm:text-[16px] md:text-[20px]">
           Empowering you to elevate your online presence and help you achieve
           sustainable growth.
         </h2>

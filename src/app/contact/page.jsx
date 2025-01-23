@@ -24,7 +24,7 @@ const page = () => {
     setError("");
     setSuccess("");
 
-    if (!formData.name || !formData.email || !formData.message) {
+    if (!formData.name || !formData.email) {
       setError("Please fill in all required fields.");
       return;
     }
@@ -39,9 +39,9 @@ const page = () => {
     }, 2000);
   };
   return (
-    <div className="preview bg-white flex min-h-[350px] w-full justify-center p-2 sm:p-10 items-start">
-      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-4 md:px-6 md:py-20 lg:grid-cols-2">
-        <div className="relative lg:pt-16 flex flex-col items-center overflow-hidden lg:items-start">
+    <div className="preview bg-white flex min-h-[350px] w-full justify-center pt-2 sm:pt-10 items-start">
+      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-4 md:px-6 md:py-10 lg:grid-cols-2">
+        <div className="relative lg:pt-10 flex flex-col items-center overflow-hidden lg:items-start">
           <div className="flex items-start justify-start">
             <div className="relative h-14 w-14 rounded-md bg-gradient-to-b from-gray-50 to-neutral-200 p-[4px] flex items-center justify-center overflow-hidden">
               <div className="relative z-20 h-full w-full rounded-[5px] bg-gray-50 flex items-center justify-center overflow-hidden">
@@ -82,9 +82,11 @@ const page = () => {
             Contact us and let us know how we can help you.
           </p>
           <div className="mt-10 hidden flex-col items-center gap-4 md:flex-row lg:flex">
-            <p className="text-md cursor-pointer text-black ">contact@onlineexpert.pk</p>
+            <p className="text-md cursor-pointer text-black ">
+              contact@onlineexpert.pk
+            </p>
             <div className="h-1 w-1 rounded-full bg-neutral-500 dark:bg-neutral-400"></div>
-            <p className="text-md text-black">+92 (321) 811 9090</p>
+            <p className="text-md text-black">+92 321 811 9090</p>
           </div>
           <div className="div relative mt-20 flex w-[600px] flex-shrink-0 -translate-x-10 items-center justify-center [perspective:800px] [transform-style:preserve-3d] sm:-translate-x-0 lg:-translate-x-32">
             <div
@@ -161,12 +163,12 @@ const page = () => {
             </div>
             <div className="w-full">
               <form onSubmit={handleSubmit}>
-                <div className="mb-3 w-full relative z-20">
+                <div className="mb-2 w-full relative z-20">
                   <label
                     className="text-neutral-300 text-sm font-medium mb-1 inline-block"
                     htmlFor="name"
                   >
-                    Full name
+                    Full name<span className="text-xl text-red-600">*</span>
                   </label>
 
                   <input
@@ -181,12 +183,12 @@ const page = () => {
                     required
                   />
                 </div>
-                <div className="mb-3 w-full relative z-20">
+                <div className="mb-2 w-full relative z-20">
                   <label
                     className="text-neutral-300 text-sm font-medium mb-1 inline-block"
                     htmlFor="email"
                   >
-                    Email Address
+                    Email Address<span className="text-xl text-red-600">*</span>
                   </label>
                   <input
                     type="email"
@@ -200,7 +202,7 @@ const page = () => {
                     required
                   />
                 </div>
-                <div className="mb-3 w-full relative z-20">
+                <div className="mb-2 w-full relative z-20">
                   <label
                     className="text-neutral-300 text-sm font-medium mb-1 inline-block"
                     htmlFor="company"
@@ -218,7 +220,7 @@ const page = () => {
                     aria-label="Company"
                   />
                 </div>
-                <div className="mb-3 w-full relative z-20">
+                <div className="mb-2 w-full relative z-20">
                   <label
                     className="text-neutral-300 text-sm font-medium mb-1 inline-block"
                     htmlFor="message"
@@ -234,7 +236,6 @@ const page = () => {
                     placeholder="Write your message"
                     rows="3"
                     aria-label="Message"
-                    required
                   ></textarea>
                   <div className="mb-3 w-full relative z-20">
                     <label

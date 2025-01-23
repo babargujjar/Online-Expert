@@ -1,24 +1,26 @@
-"use client";
-import React from "react";
-import Link from "next/link";
-import "boxicons/css/boxicons.min.css";
 
-const Footer = () => {
+import React from "react";
+import "boxicons/css/boxicons.min.css";
+import Link from "next/link";
+
+const TopBar = () => {
   return (
-    <div className=" bg-green-700 w-full">
-      <div className=" bg-green-700 flex w-full justify-between max-w-7xl mx-auto py-3 items-center">
-        <div className="flex flex-col items-start">
-          <Link
-            className="font-normal flex space-x-2 items-center text-sm mr-4 px-2 py-1 relative z-20"
-            href="/"
-          >
-            <span className="font-medium text-white">Online Expert Pvt.</span>
-          </Link>
-          <div className=" text-white">
-            © copyright Online Expert Private Pvt. 2024. All rights reserved.
+    <div className="bg-green-600 text-white sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto flex justify-between items-center px-4 ">
+        {/* Left Side: Contact Info */}
+        <div className="flex items-center space-x-4">
+          <div className="flex items-center">
+            <i className="bx bx-phone-call text-xl mr-2"></i>
+            <span>+92 321 811 9090</span>
+          </div>
+          <div className="flex items-center">
+            <i className="bx bx-envelope text-xl mr-2"></i>
+            <span>contact@onlineexpert.pk</span>
           </div>
         </div>
-        <div className="flex text-white space-x-4 text-2xl">
+
+        {/* Right Side: Social Media Icons */}
+        <div className="flex space-x-4 text-2xl">
           <Link
             href="https://www.facebook.com/onlineexpert.globalservices"
             target="_blank"
@@ -57,4 +59,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default TopBar;

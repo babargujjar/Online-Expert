@@ -1,4 +1,5 @@
 "use client";
+import "boxicons/css/boxicons.min.css";
 import { BackgroundBeams } from "../components/ui/background-beams";
 import { HoverEffect } from "../components/ui/card-hover-effect";
 import AnimatedButton from "../components/AnimatedButton";

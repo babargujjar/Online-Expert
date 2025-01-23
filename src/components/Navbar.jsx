@@ -27,9 +27,9 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-white sticky top-0 z-30 px-4">
+    <div className="bg-white sticky top-5 z-30 px-4">
       <div
-        className={`fixed px-4 top-0 left-1/2 transform -translate-x-1/2 z-50 w-full ${
+        className={`fixed px-4 top-7 left-1/2 transform -translate-x-1/2 z-50 w-full ${
           isScrolled
             ? "bg-green-600/80 backdrop-blur-md shadow-lg w-[90%] mt-3 lg:w-[90%] rounded-lg"
             : "bg-white w-full"
@@ -61,15 +61,6 @@ const Navbar = () => {
               </li>
               <li>
                 <Link
-                  href="/about"
-                  className="group relative text-[15px] text-black transition duration-300 ease-in-out"
-                >
-                  About Us
-                  <span className="absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-[#3275F8] transition-all duration-300 ease-in-out group-hover:w-full group-hover:left-0"></span>
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/services"
                   className="group relative text-[15px] text-black transition duration-300 ease-in-out"
                 >
@@ -77,6 +68,16 @@ const Navbar = () => {
                   <span className="absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-[#3275F8] transition-all duration-300 ease-in-out group-hover:w-full group-hover:left-0"></span>
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/about"
+                  className="group relative text-[15px] text-black transition duration-300 ease-in-out"
+                >
+                  About Us
+                  <span className="absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-[#3275F8] transition-all duration-300 ease-in-out group-hover:w-full group-hover:left-0"></span>
+                </Link>
+              </li>
+
               <li>
                 <Link
                   href="/work"
