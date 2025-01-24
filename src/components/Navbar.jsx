@@ -61,19 +61,20 @@ const Navbar = () => {
               </li>
               <li>
                 <Link
-                  href="/services"
-                  className="group relative text-[15px] text-black transition duration-300 ease-in-out"
-                >
-                  Services
-                  <span className="absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-[#3275F8] transition-all duration-300 ease-in-out group-hover:w-full group-hover:left-0"></span>
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/about"
                   className="group relative text-[15px] text-black transition duration-300 ease-in-out"
                 >
                   About Us
+                  <span className="absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-[#3275F8] transition-all duration-300 ease-in-out group-hover:w-full group-hover:left-0"></span>
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  href="/services"
+                  className="group relative text-[15px] text-black transition duration-300 ease-in-out"
+                >
+                  Services
                   <span className="absolute bottom-[-6px] left-1/2 w-0 h-[2px] bg-[#3275F8] transition-all duration-300 ease-in-out group-hover:w-full group-hover:left-0"></span>
                 </Link>
               </li>
@@ -131,7 +132,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       <div
-        className={`fixed top-0 right-0 h-[80%] bg-[#0a0a0a]/30 backdrop-blur-md shadow-lg z-50 w-[50%] md:w-[40%] transform transition-transform duration-500 ${
+        className={`fixed top-5 right-0 h-[80%] bg-[#0a0a0a]/30 backdrop-blur-md shadow-lg z-50 w-[50%] md:w-[40%] transform transition-transform duration-500 ${
           isMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >

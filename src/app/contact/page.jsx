@@ -258,7 +258,7 @@ const page = () => {
 
                 <button
                   type="submit"
-                  className="w-full rounded bg-blue-500 py-2 px-4 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full rounded bg-black py-2 px-4 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? "Sending..." : "Submit"}
