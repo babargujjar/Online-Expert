@@ -1,5 +1,6 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import supabase from "@/config/supabaseClient";
 
 const page = () => {
   const [formData, setFormData] = useState({
@@ -19,7 +20,8 @@ const page = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
+
     e.preventDefault();
     setError("");
     setSuccess("");
@@ -31,13 +33,70 @@ const page = () => {
 
     setIsSubmitting(true);
 
-    setTimeout(() => {
-      console.log("Form Submitted:", formData);
+    try {
+      const { data, error } = await supabase
+        .from("contacts") 
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company || null, 
+            message: formData.message || null, 
+            file: formData.file || null, 
+          },
+        ])
+        .select();
+
+        if (error) {
+        console.log("Supabase Error:", error);
+        setError(
+          "An error occurred while submitting the form. Please try again."
+        );
+        setIsSubmitting(false); 
+        return; 
+      }
+
+      if (data) {
+        console.log("Form Submitted:", data); 
+        setIsSubmitting(false);
+        setSuccess("Your message has been sent successfully!");
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          file: "",
+          message: "",
+        });
+      }
+
+    } catch (err) {
+      console.error("Unexpected Error:", err);
+      setError("An unexpected error occurred. Please try again.");
       setIsSubmitting(false);
-      setSuccess("Your message has been sent successfully!");
-      setFormData({ name: "", email: "", company: "", message: "" });
-    }, 2000);
+    }
   };
+
+
+//  useEffect(()=>{
+//    const fetchData = async () => {
+//      try {
+//        const { data, error } = await supabase.from("contacts").select("*"); // * means fetch all columns
+
+//        if (error) {
+//          console.error("Error fetching data:", error);
+//          return;
+//        }
+
+//        console.log("Fetched Data:", data); // Console log data
+//      } catch (err) {
+//        console.error("Unexpected Error:", err);
+//      }
+//    };
+
+//    const data = fetchData();
+//    console.log('data', data) // Call the function to fetch data
+//  },[])
+
   return (
     <div className="preview bg-white flex min-h-[350px] w-full justify-center pt-2 sm:pt-10 items-start">
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-4 md:px-6 md:py-10 lg:grid-cols-2">
