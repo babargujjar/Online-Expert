@@ -15,13 +15,11 @@ const TopBar = () => {
               +92 321 811 9090
             </span>
           </div>
-          <div className=" hidden sm:block">
             <div className="flex items-center">
               <i className="bx bx-envelope text-md md:text-lg sm:text-xl mr-[3px] sm:mr-2"></i>
               <span className="text-sm sm:text-lg md:text-xl">
                 contact@onlineexpert.pk
               </span>
-            </div>
           </div>
         </div>
 
