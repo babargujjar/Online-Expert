@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import supabase from "@/config/supabaseClient";
+// import supabase from "@/config/supabaseClient";
 
 const page = () => {
   const [formData, setFormData] = useState({
