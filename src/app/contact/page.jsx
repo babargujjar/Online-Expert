@@ -33,47 +33,47 @@ const page = () => {
 
     setIsSubmitting(true);
 
-    // try {
-    //   const { data, error } = await supabase
-    //     .from("contacts") 
-    //     .insert([
-    //       {
-    //         name: formData.name,
-    //         email: formData.email,
-    //         company: formData.company || null, 
-    //         message: formData.message || null, 
-    //         file: formData.file || null, 
-    //       },
-    //     ])
-    //     .select();
+    try {
+      const { data, error } = await supabase
+        .from("contacts") 
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company || null, 
+            message: formData.message || null, 
+            file: formData.file || null, 
+          },
+        ])
+        .select();
 
-    //     if (error) {
-    //     console.log("Supabase Error:", error);
-    //     setError(
-    //       "An error occurred while submitting the form. Please try again."
-    //     );
-    //     setIsSubmitting(false); 
-    //     return; 
-    //   }
+        if (error) {
+        console.log("Supabase Error:", error);
+        setError(
+          "An error occurred while submitting the form. Please try again."
+        );
+        setIsSubmitting(false); 
+        return; 
+      }
 
-    //   if (data) {
-    //     console.log("Form Submitted:", data); 
-    //     setIsSubmitting(false);
-    //     setSuccess("Your message has been sent successfully!");
-    //     setFormData({
-    //       name: "",
-    //       email: "",
-    //       company: "",
-    //       file: "",
-    //       message: "",
-    //     });
-    //   }
+      if (data) {
+        console.log("Form Submitted:", data); 
+        setIsSubmitting(false);
+        setSuccess("Your message has been sent successfully!");
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          file: "",
+          message: "",
+        });
+      }
 
-    // } catch (err) {
-    //   console.error("Unexpected Error:", err);
-    //   setError("An unexpected error occurred. Please try again.");
-    //   setIsSubmitting(false);
-    // }
+    } catch (err) {
+      console.error("Unexpected Error:", err);
+      setError("An unexpected error occurred. Please try again.");
+      setIsSubmitting(false);
+    }
   };
 
 
