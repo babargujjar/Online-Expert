@@ -3,36 +3,38 @@ import Link from "next/link";
 import Cookies from "js-cookie";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const page = () => {
- const [username, setUsername] = useState("");
- const [password, setPassword] = useState("");
- const [error, setError] = useState("");
- const router = useRouter();
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const router = useRouter();
 
- const validUsername = "admin";
- const validPassword = "password123";
+  const validUsername = "admin";
+  const validPassword = "password123";
 
- const handleLogin = (e) => {
-   e.preventDefault();
+  const handleLogin = (e) => {
+    e.preventDefault();
 
-   if (username === validUsername && password === validPassword) {
-     console.log("Login successful"); 
-     Cookies.set("isLoggedIn", "true", { expires: 1 / 1440, path: "/" });
+    if (username === validUsername && password === validPassword) {
+      toast.success("Login successful 🎉", { position: "top-left" });
 
-     try {
-       router.push("/admin/home");
-       console.log("Redirecting to /admin/home");
-     } catch (err) {
-       console.error("Error in router.push:", err); 
-     }
-   } else {
-     setError("Invalid username or password.");
-   }
- };
+      Cookies.set("isLoggedIn", "true", { expires: 1, path: "/" });
+
+      setTimeout(() => {
+        router.push("/admin");
+      }, 1500);
+    } else {
+      toast.error("Invalid username or password ❌", { position: "top-left" });
+      setError("Invalid username or password.");
+    }
+  };
 
   return (
     <div>
+      <ToastContainer />
       <div className="flex min-h-full mt-10 flex-1 flex-col border justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm ">
           <div className="text-center">
@@ -46,23 +48,13 @@ const page = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form
-            onSubmit={handleLogin}
-            className="space-y-6"
-            action="#"
-            method="POST"
-          >
+          <form onSubmit={handleLogin} className="space-y-6">
             <div>
-              <label
-                htmlFor="username"
-                className="block text-sm font-medium leading-6 text-gray-900"
-              >
+              <label className="block text-sm font-medium leading-6 text-gray-900">
                 Username
               </label>
               <div className="mt-2">
                 <input
-                  id="username"
-                  name="username"
                   type="text"
                   autoComplete="username"
                   onChange={(e) => setUsername(e.target.value)}
@@ -73,26 +65,11 @@ const page = () => {
             </div>
 
             <div>
-              <div className="flex items-center justify-between">
-                <label
-                  htmlFor="password"
-                  className="block text-sm font-medium leading-6 text-gray-900"
-                >
-                  Password
-                </label>
-                <div className="text-sm">
-                  <a
-                    href="#"
-                    className="font-semibold text-indigo-600 hover:text-indigo-500"
-                  >
-                    Forgot password?
-                  </a>
-                </div>
-              </div>
+              <label className="block text-sm font-medium leading-6 text-gray-900">
+                Password
+              </label>
               <div className="mt-2">
                 <input
-                  id="password"
-                  name="password"
                   type="password"
                   autoComplete="password"
                   onChange={(e) => setPassword(e.target.value)}
@@ -105,7 +82,7 @@ const page = () => {
             <div>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500"
               >
                 Sign in
               </button>

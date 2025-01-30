@@ -24,7 +24,7 @@ const TopBar = () => {
         </div>
 
         {/* Right Side: Social Media Icons */}
-        <div className="flex items-center space-x-2 text-2xl">
+        <div className="flex items-center space-x-2 lg:space-x-5 text-2xl">
           <Link
             href="https://www.facebook.com/onlineexpert.globalservices"
             target="_blank"

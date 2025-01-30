@@ -1,4 +1,5 @@
 "use client";
+import supabase from "@/config/supabaseClient";
 import React, { useEffect, useState } from "react";
 // import supabase from "@/config/supabaseClient";
 
@@ -75,6 +76,37 @@ const page = () => {
       setIsSubmitting(false);
     }
   };
+
+  const fileUpload = async (e) => {
+    try {
+      if (!e.target.files || e.target.files.length === 0) {
+        console.log("No file selected");
+        return;
+      }
+
+      let file = e.target.files[0];
+      const fileName = file.name;
+
+      const { data, error } = await supabase.storage
+        .from("resumes")
+        .upload(`uploads/${fileName}`, file);
+
+      if (data) {
+        console.log("File uploaded successfully:", data);
+        setFormData((prevData) => ({
+          ...prevData,
+          file: data.path, 
+        }));
+      }
+
+      if (error) {
+        console.error("Upload error:", error);
+      }
+    } catch (err) {
+      console.error("Unexpected error:", err);
+    }
+  };
+
 
 
 //  useEffect(()=>{
@@ -306,8 +338,8 @@ const page = () => {
                         type="file"
                         id="file"
                         name="file"
-                        onChange={handleChange}
-                        className="hidden" // Hide default input
+                        onChange={fileUpload}
+                        className="hidden" 
                       />
                     </label>
                   </div>
