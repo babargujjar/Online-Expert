@@ -17,7 +17,13 @@ export const HoverEffect = ({ items, className }) => {
       {items.map((item, idx) => (
         <Link
           key={item?.title}
-          href={`/services/${item.title.toLowerCase().replace(/\s+/g, "-")}`}
+          href={{
+            pathname: "/services/service-detail",
+            query: {
+              title: encodeURIComponent(item.title),
+              description: encodeURIComponent(item.longDescription),
+            },
+          }}
           className="relative group block p-2 h-full w-full"
         >
           <div
@@ -43,7 +49,7 @@ export const HoverEffect = ({ items, className }) => {
             </AnimatePresence>
             <Card>
               <CardTitle imgSrc={item.img}>{item.title}</CardTitle>
-              <CardDescription>{item.description}</CardDescription>
+              <CardDescription>{item.shortDescription}</CardDescription>
             </Card>
           </div>
         </Link>

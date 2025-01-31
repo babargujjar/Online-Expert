@@ -15,7 +15,8 @@ const page = () => {
   const [formData, setFormData] = useState({
     title: "",
     img: null,
-    description: "",
+    shortDescription: "",
+    longDescription: "",
   });
   const toggleDropdown = (id) => {
     setOpenDropdownId(openDropdownId === id ? null : id);
@@ -44,7 +45,7 @@ const page = () => {
 
 const handleSubmit = async (e) => {
   e.preventDefault();
-  if (!formData.title || !formData.description) {
+  if (!formData.title || !formData.shortDescription) {
     alert("All fields are required!");
     return;
   }
@@ -73,7 +74,8 @@ const handleSubmit = async (e) => {
   const payload = {
     title: formData.title,
     img: uploadedUrl, // Agar image change hui, to naya URL, warna purana
-    description: formData.description,
+    shortDescription: formData.shortDescription,
+    longDescription: formData.longDescription,
   };
 
   let response;
@@ -99,8 +101,9 @@ const handleEdit = (service) => {
   setEditingService(service);
   setFormData({
     title: service.title || "",
-    description: service.description || "",
-    img: service.img || null, 
+    shortDescription: service.shortDescription || "",
+    longDescription: service.longDescription || "",
+    img: service.img || null,
   });
   setPopupOpen(true);
 };
@@ -110,7 +113,8 @@ const handleEdit = (service) => {
      setFormData({
        title: "",
        img: null,
-       description: "",
+       shortDescription: "",
+       longDescription: "",
      });
      setPopupOpen(true);
    };
@@ -159,7 +163,7 @@ const handleEdit = (service) => {
                     {service.title}
                   </h3>
                   <p className="text-sm text-gray-600 mt-1">
-                    {service.description}
+                    {service.shortDescription}
                   </p>
                   <div className="absolute top-2 right-2">
                     <MoreVertical
@@ -202,7 +206,8 @@ const handleEdit = (service) => {
                     setFormData({
                       title: "",
                       img: null,
-                      description: "",
+                      shortDescription: "",
+                      longDescription: "",
                     });
                     setPopupOpen(false);
                     setEditingService(null);
@@ -254,9 +259,17 @@ const handleEdit = (service) => {
                     />
                   </div>
                   <textarea
-                    name="description"
-                    placeholder="Description"
-                    value={formData.description}
+                    name="shortDescription"
+                    placeholder="Short Description"
+                    value={formData.shortDescription}
+                    onChange={handleInputChange}
+                    className="w-full p-2 border rounded"
+                    required
+                  ></textarea>
+                  <textarea
+                    name="longDescription"
+                    placeholder="Long Description"
+                    value={formData.longDescription}
                     onChange={handleInputChange}
                     className="w-full p-2 border rounded"
                     required
