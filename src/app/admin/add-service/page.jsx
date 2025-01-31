@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { Plus, MoreVertical, X } from "lucide-react";
+import { Plus, MoreVertical, X ,Upload} from "lucide-react";
 import supabase from "@/config/supabaseClient";
 import Sidebar from "../SideBar";
 import Navbar from "../Navbar";
@@ -20,6 +20,7 @@ const page = () => {
   const toggleDropdown = (id) => {
     setOpenDropdownId(openDropdownId === id ? null : id);
   };
+  console.log('services', services)
 
   useEffect(() => {
     fetchServices();
@@ -43,31 +44,35 @@ const page = () => {
 
 const handleSubmit = async (e) => {
   e.preventDefault();
-  if (!formData.title || !formData.img || !formData.description) {
+  if (!formData.title || !formData.description) {
     alert("All fields are required!");
     return;
   }
 
-  let uploadedUrls = [];
-  for (let i = 0; i < formData.img.length; i++) {
-    const imageFile = formData.img[i];
-    const fileName = `${Date.now()}-${imageFile.name}`;
+  let uploadedUrl = formData.img; // Default: existing image URL
+
+  if (formData.img && formData.img instanceof File) {
+    // Agar nayi image select ki gayi hai, to upload karein
+    const fileName = `${Date.now()}-${formData.img.name}`;
     const { data: uploadData, error: uploadError } = await supabase.storage
       .from("services-images")
-      .upload(fileName, imageFile);
+      .upload(fileName, formData.img);
+
     if (uploadError) {
       console.error("Upload error:", uploadError);
       return;
     }
+
     const { data: publicData } = supabase.storage
       .from("services-images")
       .getPublicUrl(fileName);
-    uploadedUrls.push(publicData.publicUrl);
+
+    uploadedUrl = publicData.publicUrl; // Naya image URL update karein
   }
 
   const payload = {
     title: formData.title,
-    img: uploadedUrls.join(","),
+    img: uploadedUrl, // Agar image change hui, to naya URL, warna purana
     description: formData.description,
   };
 
@@ -89,19 +94,26 @@ const handleSubmit = async (e) => {
     fetchServices();
   }
 };
-  const handleAddService = () => {
-    setFormData({
-      title: "",
-      img: null,
-      description: "",
-    });
-    setPopupOpen(true);
-  };
-  const handleEdit = (service) => {
-    setEditingService(service);
-    setFormData(service);
-    setPopupOpen(true);
-  };
+
+const handleEdit = (service) => {
+  setEditingService(service);
+  setFormData({
+    title: service.title || "",
+    description: service.description || "",
+    img: service.img || null, 
+  });
+  setPopupOpen(true);
+};
+
+
+   const handleAddService = () => {
+     setFormData({
+       title: "",
+       img: null,
+       description: "",
+     });
+     setPopupOpen(true);
+   };
 
   const handleDelete = async (id) => {
     const { error } = await supabase.from("services").delete().match({ id });
@@ -168,7 +180,7 @@ const handleSubmit = async (e) => {
                         <button
                           className="block w-full px-4 py-2 text-left hover:bg-gray-100 text-red-600"
                           onClick={() => {
-                            handleDelete(service);
+                            handleDelete(service.id);
                             setOpenDropdownId(null);
                           }}
                         >
@@ -193,7 +205,7 @@ const handleSubmit = async (e) => {
                       description: "",
                     });
                     setPopupOpen(false);
-                    setEditingService(null)
+                    setEditingService(null);
                   }}
                   className="absolute top-2 right-2"
                 >
@@ -212,14 +224,35 @@ const handleSubmit = async (e) => {
                     className="w-full p-2 border rounded"
                     required
                   />
-                  <input
-                    type="file"
-                    name="img"
-                    accept="image/*"
-                    multiple
-                    onChange={handleInputChange}
-                    className="w-full p-2 border rounded"
-                  />
+                  <div
+                    className="w-full h-32 mb-2 border-2 border-dashed flex items-center justify-center rounded cursor-pointer relative"
+                    onClick={() => document.getElementById("fileInput").click()}
+                  >
+                    {formData.img ? (
+                      <img
+                        src={
+                          typeof formData.img === "string"
+                            ? formData.img
+                            : URL.createObjectURL(formData.img)
+                        }
+                        alt="Project"
+                        className="w-full h-full object-cover rounded"
+                      />
+                    ) : (
+                      <div className="flex flex-col items-center text-gray-500">
+                        <Upload size={32} />
+                        <p className="text-sm">Upload Image</p>
+                      </div>
+                    )}
+                    <input
+                      id="fileInput"
+                      type="file"
+                      className="hidden"
+                      onChange={(e) =>
+                        setFormData({ ...formData, img: e.target.files[0] })
+                      }
+                    />
+                  </div>
                   <textarea
                     name="description"
                     placeholder="Description"

@@ -1,6 +1,7 @@
 "use client";
 import "boxicons/css/boxicons.min.css";
 import { BackgroundBeams } from "../components/ui/background-beams";
+import supabase from "@/config/supabaseClient";
 import { HoverEffect } from "../components/ui/card-hover-effect";
 import AnimatedButton from "../components/AnimatedButton";
 import { useEffect, useState } from "react";
@@ -8,67 +9,95 @@ import { useEffect, useState } from "react";
 export default function Home() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [myProjects, setMyProjects] = useState([]);
+  const [services, setServices] = useState([]);
+  const [loading,setLoading] = useState(false)
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % myProjects.length);
-    }, 5000);
+    if (myProjects.length > 1) {
+      const interval = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % myProjects.length);
+      }, 5000);
 
-    return () => clearInterval(interval);
+      return () => clearInterval(interval);
+    }
+  }, [myProjects.length]); 
+
+  useEffect(() => {
+    fetchProjects();
   }, []);
+
+  const fetchProjects = async () => {
+    const { data, error } = await supabase.from("projects").select("*");
+    if (error) console.error("Error fetching projects:", error);
+    else setMyProjects(data);
+  };
+
+    useEffect(() => {
+      fetchServices();
+    }, []);
+
+    const fetchServices = async () => {
+      setLoading(true);
+      const { data, error } = await supabase.from("services").select("*");
+      if (error) console.error("Error fetching services:", error);
+      else setServices(data);
+      setLoading(false);
+    };
 
   const handleToggle = () => {
     setIsExpanded(!isExpanded);
   };
-  const projects = [
-    {
-      title: "Web Development",
-      img: "assets/web.svg",
-      description:
-        "Build a dynamic, responsive, and user-friendly website that drives traffic and generates leads for your business.",
-    },
-    {
-      title: "SEO",
-      img: "assets/SEO.svg",
-      description:
-        "Optimize your website to rank higher in search engines and attract more organic traffic, increasing your visibility and business growth.",
-    },
-    {
-      title: "Digital Marketing",
-      img: "assets/digital.svg",
-      description:
-        "Enhance your brands visibility and engagement across multiple online platforms with targeted strategies tailored to your business goals.",
-    },
-    {
-      title: "Graphic Design",
-      img: "assets/graphic.svg",
-      description:
-        "Our creative team delivers visually compelling designs that align with your brand and make a lasting impression.",
-    },
-  ];
+  // const projects = [
+  //   {
+  //     title: "Web Development",
+  //     img: "assets/web.svg",
+  //     description:
+  //       "Build a dynamic, responsive, and user-friendly website that drives traffic and generates leads for your business.",
+  //   },
+  //   {
+  //     title: "SEO",
+  //     img: "assets/SEO.svg",
+  //     description:
+  //       "Optimize your website to rank higher in search engines and attract more organic traffic, increasing your visibility and business growth.",
+  //   },
+  //   {
+  //     title: "Digital Marketing",
+  //     img: "assets/digital.svg",
+  //     description:
+  //       "Enhance your brands visibility and engagement across multiple online platforms with targeted strategies tailored to your business goals.",
+  //   },
+  //   {
+  //     title: "Graphic Design",
+  //     img: "assets/graphic.svg",
+  //     description:
+  //       "Our creative team delivers visually compelling designs that align with your brand and make a lasting impression.",
+  //   },
+  // ];
+  console.log("myProjects", myProjects);
 
-  const myProjects = [
-    {
-      id: 1,
-      title: "E-Commerce Website",
-      description: "An online store offering a wide range of products.",
-      technologies: ["React", "Node.js", "MongoDB"],
-      database: "MongoDB",
-      uiux: "Responsive and user-friendly design",
-      type: "Web",
-      image: "/assets/developer.jpg",
-    },
-    {
-      id: 2,
-      title: "Fitness Tracker App",
-      description: "A mobile app to track fitness activities and goals.",
-      technologies: ["React Native", "Firebase"],
-      database: "Firebase",
-      uiux: "Interactive and intuitive interface",
-      type: "Mobile App",
-      image: "/assets/about.jpg",
-    },
-  ];
+  // const myProjects = [
+  //   {
+  //     id: 1,
+  //     title: "E-Commerce Website",
+  //     description: "An online store offering a wide range of products.",
+  //     technologies: ["React", "Node.js", "MongoDB"],
+  //     database: "MongoDB",
+  //     uiux: "Responsive and user-friendly design",
+  //     type: "Web",
+  //     image: "/assets/developer.jpg",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Fitness Tracker App",
+  //     description: "A mobile app to track fitness activities and goals.",
+  //     technologies: ["React Native", "Firebase"],
+  //     database: "Firebase",
+  //     uiux: "Interactive and intuitive interface",
+  //     type: "Mobile App",
+  //     image: "/assets/about.jpg",
+  //   },
+  // ];
 
   return (
     <div>
@@ -78,7 +107,7 @@ export default function Home() {
             Empowering you to elevate your online presence and help you achieve
             sustainable growth.
           </h2>
-          <HoverEffect items={projects} />
+          <HoverEffect items={services} />
         </div>
       </div>
       <div className="bg-gray-100 pb-5 w-full">
@@ -156,33 +185,33 @@ export default function Home() {
           <div className="max-w-6xl mx-auto flex md:flex-row flex-col items-center justify-between overflow-hidden">
             {/* Left Content */}
             <div
-              key={myProjects[currentIndex].id}
+              key={myProjects[currentIndex]?.id}
               className="w-full md:w-1/2 pb-3 md:pb-0 transition-all duration-1000 transform"
             >
               <h2 className="text-black font-bold text-2xl">
-                {myProjects[currentIndex].title}
+                {myProjects[currentIndex]?.title}
               </h2>
               <p className="text-black mt-4 leading-relaxed">
-                {myProjects[currentIndex].description}
+                {myProjects[currentIndex]?.description}
               </p>
               <div className="mt-4">
                 <h4 className="text-green-400 font-semibold text-lg">
                   Technologies:
                 </h4>
                 <ul className="list-disc list-inside text-black text-sm">
-                  {myProjects[currentIndex].technologies.map((tech, index) => (
+                  {myProjects[currentIndex]?.technologies.map((tech, index) => (
                     <li key={index}>{tech}</li>
                   ))}
                 </ul>
               </div>
               <p className="text-black text-sm mt-4">
-                <strong>Database:</strong> {myProjects[currentIndex].database}
+                <strong>Database:</strong> {myProjects[currentIndex]?.database}
               </p>
               <p className="text-black text-sm mt-2">
-                <strong>UI/UX:</strong> {myProjects[currentIndex].uiux}
+                <strong>UI/UX:</strong> {myProjects[currentIndex]?.uiux}
               </p>
               <p className="text-black text-sm mt-2">
-                <strong>Type:</strong> {myProjects[currentIndex].type}
+                <strong>Type:</strong> {myProjects[currentIndex]?.type}
               </p>
             </div>
 
@@ -192,8 +221,8 @@ export default function Home() {
               style={{ transform: "translateX(0)" }}
             >
               <img
-                src={myProjects[currentIndex].image}
-                alt={myProjects[currentIndex].title}
+                src={myProjects[currentIndex]?.image}
+                alt={myProjects[currentIndex]?.title}
                 className="w-full h-96 object-cover rounded-md shadow-lg"
               />
             </div>

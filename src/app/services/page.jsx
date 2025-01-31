@@ -1,34 +1,24 @@
+"use client"
 import { HoverEffect } from '@/components/ui/card-hover-effect';
-import React from 'react'
+import supabase from "@/config/supabaseClient";
+import React, { useEffect, useState } from 'react'
 
 const page = () => {
+  const [services, setServices] = useState([]);
+  const [loading,setLoading] = useState(false)
 
-const projects = [
-  {
-    title: "Web Development",
-    img: "assets/web.svg",
-    description:
-      "Build a dynamic, responsive, and user-friendly website that drives traffic and generates leads for your business.",
-  },
-  {
-    title: "SEO",
-    img: "assets/SEO.svg",
-    description:
-      "Optimize your website to rank higher in search engines and attract more organic traffic, increasing your visibility and business growth.",
-  },
-  {
-    title: "Digital Marketing",
-    img: "assets/digital.svg",
-    description:
-      "Enhance your brands visibility and engagement across multiple online platforms with targeted strategies tailored to your business goals.",
-  },
-  {
-    title: "Graphic Design",
-    img: "assets/graphic.svg",
-    description:
-      "Our creative team delivers visually compelling designs that align with your brand and make a lasting impression.",
-  },
-];
+    useEffect(() => {
+      fetchServices();
+    }, []);
+
+    const fetchServices = async () => {
+      setLoading(true);
+      const { data, error } = await supabase.from("services").select("*");
+      if (error) console.error("Error fetching services:", error);
+      else setServices(data);
+      setLoading(false);
+    };
+
 
   return (
     <div className="bg-white pt-8 px-4"
@@ -38,7 +28,7 @@ const projects = [
           Empowering you to elevate your online presence and help you achieve
           sustainable growth.
         </h2>
-        <HoverEffect items={projects} />
+        <HoverEffect items={services} />
       </div>
     </div>
   );

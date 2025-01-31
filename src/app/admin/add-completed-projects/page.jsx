@@ -36,60 +36,82 @@ const Page = () => {
     else setProjects(data);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!formData.title || !formData.description) {
-      alert("All fields are required!");
+const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!formData.title || !formData.description) {
+    alert("All fields are required!");
+    return;
+  }
+
+  let uploadedUrl = formData.image; // Default: existing image URL
+
+  if (formData.image && formData.image instanceof File) {
+    // Agar nayi image hai, to upload karein
+    const fileName = `${Date.now()}-${formData.image.name}`;
+    const { data: uploadData, error: uploadError } = await supabase.storage
+      .from("projects-images")
+      .upload(fileName, formData.image);
+
+    if (uploadError) {
+      console.error("Upload error:", uploadError);
       return;
     }
 
-    let uploadedUrl = "";
-    if (formData.image) {
-      const fileName = `${Date.now()}-${formData.image.name}`;
-      const { data: uploadData, error: uploadError } = await supabase.storage
-        .from("projects-images")
-        .upload(fileName, formData.image);
-      if (uploadError) {
-        console.error("Upload error:", uploadError);
-        return;
-      }
-      const { data: publicData } = supabase.storage
-        .from("projects-images")
-        .getPublicUrl(fileName);
-      uploadedUrl = publicData.publicUrl;
-    }
+    const { data: publicData } = supabase.storage
+      .from("projects-images")
+      .getPublicUrl(fileName);
 
-    const payload = { ...formData, image: uploadedUrl || null };
-    console.log("payload", payload);
+    uploadedUrl = publicData.publicUrl;
+  }
 
-    let response;
-    if (editingProject) {
-      response = await supabase
-        .from("projects")
-        .update(payload)
-        .match({ id: editingProject.id });
-    } else {
-      response = await supabase.from("projects").insert([payload]);
-    }
+  const payload = { ...formData, image: uploadedUrl }; // Image URL ko payload me daalna
 
-    if (response.error) {
-      console.error("Error saving project:", response.error);
-    } else {
-      setFormData({
-        title: "",
-        description: "",
-        technologies: [""],
-        database: "",
-        uiux: "",
-        type: "",
-        image: null,
-      });
-      setPopupOpen(false);
-      setEditingProject(null);
-      fetchProjects();
-    }
-  };
+  console.log("payload", payload);
 
+  let response;
+  if (editingProject) {
+    response = await supabase
+      .from("projects")
+      .update(payload)
+      .match({ id: editingProject.id });
+  } else {
+    response = await supabase.from("projects").insert([payload]);
+  }
+
+  if (response.error) {
+    console.error("Error saving project:", response.error);
+  } else {
+    setFormData({
+      title: "",
+      description: "",
+      technologies: [""],
+      database: "",
+      uiux: "",
+      type: "",
+      image: null,
+    });
+    setPopupOpen(false);
+    setEditingProject(null);
+    fetchProjects();
+  }
+};
+
+const handleEdit = (project) => {
+  setEditingProject(project);
+  setFormData({
+    title: project.title || "",
+    description: project.description || "",
+    technologies: project.technologies || [""],
+    database: project.database || "",
+    uiux: project.uiux || "",
+    type: project.type || "",
+    image: project.image || "", // Purani image ka URL preserve karna
+  });
+  setPopupOpen(true);
+};
+
+  
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this project?"
@@ -102,20 +124,6 @@ const Page = () => {
     } else {
       fetchProjects();
     }
-  };
-
-  const handleEdit = (project) => {
-    setEditingProject(project);
-    setFormData({
-      title: project.title || "",
-      description: project.description || "",
-      technologies: project.technologies || [""],
-      database: project.database || "",
-      uiux: project.uiux || "",
-      type: project.type || "",
-      image: project.image || null, 
-    });
-    setPopupOpen(true);
   };
 
   const closePopup = () => {
@@ -195,7 +203,6 @@ const Page = () => {
           </div>
           {popupOpen && (
             <div
-              onClick={closePopup}
               className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50"
             >
               <div className="bg-white p-6 rounded shadow-md max-w-xl mx-auto relative overflow-y-auto max-h-[80vh] py-5">

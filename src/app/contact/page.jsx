@@ -85,11 +85,12 @@ const page = () => {
       }
 
       let file = e.target.files[0];
-      const fileName = file.name;
+      // const fileName = file.name;
+      const fileName = `${Date.now()}-${file.name}`;
 
       const { data, error } = await supabase.storage
         .from("resumes")
-        .upload(`uploads/${fileName}`, file);
+        .upload(`${fileName}`, file);
 
       if (data) {
         console.log("File uploaded successfully:", data);

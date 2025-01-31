@@ -1,31 +1,45 @@
+"use client"
 import ProjectCard from "@/components/ProjectCard";
-import React from "react";
+import React, { useEffect, useState } from "react";
+import supabase from "@/config/supabaseClient";
 
-const projects = [
-  {
-    id: 1,
-    title: "E-Commerce Website",
-    description: "An online store offering a wide range of products.",
-    technologies: ["React", "Node.js", "MongoDB"],
-    database: "MongoDB",
-    uiux: "Responsive and user-friendly design",
-    type: "Web",
-    image: "/assets/developer.jpg", 
-  },
-  {
-    id: 2,
-    title: "Fitness Tracker App",
-    description: "A mobile app to track fitness activities and goals.",
-    technologies: ["React Native", "Firebase"],
-    database: "Firebase",
-    uiux: "Interactive and intuitive interface",
-    type: "Mobile App",
-    image: "/assets/about.jpg", 
-  },
-];
+// const projects = [
+//   {
+//     id: 1,
+//     title: "E-Commerce Website",
+//     description: "An online store offering a wide range of products.",
+//     technologies: ["React", "Node.js", "MongoDB"],
+//     database: "MongoDB",
+//     uiux: "Responsive and user-friendly design",
+//     type: "Web",
+//     image: "/assets/developer.jpg", 
+//   },
+//   {
+//     id: 2,
+//     title: "Fitness Tracker App",
+//     description: "A mobile app to track fitness activities and goals.",
+//     technologies: ["React Native", "Firebase"],
+//     database: "Firebase",
+//     uiux: "Interactive and intuitive interface",
+//     type: "Mobile App",
+//     image: "/assets/about.jpg", 
+//   },
+// ];
 
 
 const Page = () => {
+    const [projects, setProjects] = useState([]);
+
+      useEffect(() => {
+        fetchProjects();
+      }, []);
+
+      const fetchProjects = async () => {
+        const { data, error } = await supabase.from("projects").select("*");
+        if (error) console.error("Error fetching projects:", error);
+        else setProjects(data);
+      };
+      
   return (
     <div className="bg-white min-h-screen py-10 px-7">
       <div className="max-w-6xl mx-auto">
