@@ -86,7 +86,7 @@ const page = () => {
 
       let file = e.target.files[0];
       // const fileName = file.name;
-      const fileName = `${Date.now()}-${file.name}`;
+      const fileName = `${Date.now()}`;
 
       const { data, error } = await supabase.storage
         .from("resumes")
