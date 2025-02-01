@@ -1,7 +1,6 @@
 "use client";
 import supabase from "@/config/supabaseClient";
 import React, { useEffect, useState } from "react";
-// import supabase from "@/config/supabaseClient";
 
 const page = () => {
   const [formData, setFormData] = useState({
@@ -21,117 +20,126 @@ const page = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError("");
+  setSuccess("");
 
-    e.preventDefault();
-    setError("");
-    setSuccess("");
+  if (!formData.name || !formData.email) {
+    setError("Please fill in all required fields.");
+    return;
+  }
 
-    if (!formData.name || !formData.email) {
-      setError("Please fill in all required fields.");
+  setIsSubmitting(true);
+
+  try {
+    let uploadedFilePath = null;
+
+    if (formData.file instanceof File) {
+      uploadedFilePath = await fileUpload(formData.file);
+    }
+
+    const { data, error } = await supabase
+      .from("contacts")
+      .insert([
+        {
+          name: formData.name,
+          email: formData.email,
+          company: formData.company || null,
+          message: formData.message || null,
+          file: uploadedFilePath || null},
+      ])
+      .select();
+
+    if (error) {
+      console.log("Supabase Error:", error);
+      setError(
+        "An error occurred while submitting the form. Please try again."
+      );
+      setIsSubmitting(false);
       return;
     }
 
-    setIsSubmitting(true);
-
-    try {
-      const { data, error } = await supabase
-        .from("contacts") 
-        .insert([
-          {
-            name: formData.name,
-            email: formData.email,
-            company: formData.company || null, 
-            message: formData.message || null, 
-            file: formData.file || null, 
-          },
-        ])
-        .select();
-
-        if (error) {
-        console.log("Supabase Error:", error);
-        setError(
-          "An error occurred while submitting the form. Please try again."
-        );
-        setIsSubmitting(false); 
-        return; 
-      }
-
-      if (data) {
-        console.log("Form Submitted:", data); 
-        setIsSubmitting(false);
-        setSuccess("Your message has been sent successfully!");
-        setFormData({
-          name: "",
-          email: "",
-          company: "",
-          file: "",
-          message: "",
-        });
-      }
-
-    } catch (err) {
-      console.error("Unexpected Error:", err);
-      setError("An unexpected error occurred. Please try again.");
-      setIsSubmitting(false);
+    if (data) {
+      console.log("Form Submitted:", data);
+      setSuccess("Your message has been sent successfully!");
+      setFormData({
+        name: "",
+        email: "",
+        company: "",
+        file: null,
+        message: "",
+      });
     }
-  };
+  } catch (err) {
+    console.error("Unexpected Error:", err);
+    setError("An unexpected error occurred. Please try again.");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
-  const fileUpload = async (e) => {
-    try {
-      if (!e.target.files || e.target.files.length === 0) {
-        console.log("No file selected");
-        return;
-      }
+const fileUpload = async (file) => {
+  try {
+    if (!file) return null;
 
-      let file = e.target.files[0];
-      // const fileName = file.name;
-      const fileName = `${Date.now()}`;
+    const fileName = `${Date.now()}`;
+    const { data, error } = await supabase.storage
+      .from("resumes")
+      .upload(fileName, file);
 
-      const { data, error } = await supabase.storage
-        .from("resumes")
-        .upload(`${fileName}`, file);
-
-      if (data) {
-        console.log("File uploaded successfully:", data);
-        setFormData((prevData) => ({
-          ...prevData,
-          file: data.path, 
-        }));
-      }
-
-      if (error) {
-        console.error("Upload error:", error);
-      }
-    } catch (err) {
-      console.error("Unexpected error:", err);
+    if (error) {
+      console.error("Upload error:", error);
+      return null;
     }
-  };
+
+    console.log("File uploaded successfully:", data);
+    return data.path; 
+  } catch (err) {
+    console.error("Unexpected error:", err);
+    return null;
+  }
+};
+
+const handleFileChange = (e) => {
+  if (e.target.files.length > 0) {
+    const file = e.target.files[0];
+
+    setFormData((prevData) => ({
+      ...prevData,
+      file: file, 
+    }));
+  }
+};
 
 
-
-//  useEffect(()=>{
-//    const fetchData = async () => {
-//      try {
-//        const { data, error } = await supabase.from("contacts").select("*"); // * means fetch all columns
-
-//        if (error) {
-//          console.error("Error fetching data:", error);
-//          return;
-//        }
-
-//        console.log("Fetched Data:", data); // Console log data
-//      } catch (err) {
-//        console.error("Unexpected Error:", err);
-//      }
-//    };
-
-//    const data = fetchData();
-//    console.log('data', data) // Call the function to fetch data
-//  },[])
 
   return (
-    <div className="preview bg-white flex min-h-[350px] w-full justify-center pt-2 sm:pt-10 items-start">
+    <div className="preview relative bg-white flex min-h-[350px] w-full justify-center pt-2 sm:pt-10 items-start">
+      {isSubmitting && (
+        <div className="fixed z-50 inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <svg
+            className="animate-spin h-10 w-10 text-white"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <circle
+              className="opacity-25"
+              cx="12"
+              cy="12"
+              r="10"
+              stroke="currentColor"
+              strokeWidth="4"
+            ></circle>
+            <path
+              className="opacity-75"
+              fill="currentColor"
+              d="M4 12a8 8 0 018-8v4l3.5-3.5L12 0V4a8 8 0 00-8 8h4z"
+            ></path>
+          </svg>
+        </div>
+      )}
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-10 px-4 md:px-6 md:py-10 lg:grid-cols-2">
         <div className="relative lg:pt-10 flex flex-col items-center overflow-hidden lg:items-start">
           <div className="flex items-start justify-start">
@@ -334,13 +342,13 @@ const page = () => {
                       htmlFor="file"
                       className="w-full flex items-center justify-center border border-gray-300 rounded bg-white p-2 text-gray-700 cursor-pointer focus-within:border-blue-500 focus-within:ring-blue-500"
                     >
-                      {formData.file || "Upload a file"}{" "}
+                      {formData.file ? formData.file.name : "Upload a file"}
                       <input
                         type="file"
                         id="file"
                         name="file"
-                        onChange={fileUpload}
-                        className="hidden" 
+                        onChange={handleFileChange}
+                        className="hidden"
                       />
                     </label>
                   </div>
