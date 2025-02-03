@@ -120,6 +120,10 @@ const handleEdit = (service) => {
    };
 
   const handleDelete = async (id) => {
+        const confirmDelete = window.confirm(
+          "Are you sure you want to delete this service?"
+        );
+        if (!confirmDelete) return;
     const { error } = await supabase.from("services").delete().match({ id });
     if (error) console.error("Error deleting service:", error);
     else fetchServices();
