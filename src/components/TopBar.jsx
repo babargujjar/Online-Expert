@@ -32,7 +32,7 @@ const TopBar = () => {
             className=" w-4 h-4 md:w-6 md:h-6"
           >
             <img
-              className="w-full h-full"
+              className="w-full h-auto"
               src="assets/facebook.webp"
               alt="Facebook"
             />
@@ -44,7 +44,7 @@ const TopBar = () => {
             className=" w-4 h-4 md:w-6 md:h-6"
           >
             <img
-              className="w-full h-full"
+              className="w-full h-auto"
               src="assets/linkedin.webp"
               alt="LinkedIn"
             />
@@ -56,7 +56,7 @@ const TopBar = () => {
             className=" w-4 h-4 md:w-6 md:h-6"
           >
             <img
-              className="w-full h-full"
+              className="w-full h-auto"
               src="assets/pinterest.png"
               alt="Pinterest"
             />
@@ -68,7 +68,7 @@ const TopBar = () => {
             className=" w-4 h-4 md:w-6 md:h-6"
           >
             <img
-              className="w-full h-full"
+              className="w-full h-auto"
               src="assets/blogger.png"
               alt="Blogger"
             />

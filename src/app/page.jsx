@@ -1,13 +1,10 @@
 "use client";
 import "boxicons/css/boxicons.min.css";
-import { BackgroundBeams } from "../components/ui/background-beams";
 import supabase from "@/config/supabaseClient";
 import { HoverEffect } from "../components/ui/card-hover-effect";
-import AnimatedButton from "../components/AnimatedButton";
 import { useEffect, useState } from "react";
 
 export default function Home() {
-  const [isExpanded, setIsExpanded] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [myProjects, setMyProjects] = useState([]);
   const [services, setServices] = useState([]);
@@ -45,60 +42,6 @@ export default function Home() {
       setLoading(false);
     };
 
-  const handleToggle = () => {
-    setIsExpanded(!isExpanded);
-  };
-  // const projects = [
-  //   {
-  //     title: "Web Development",
-  //     img: "assets/web.svg",
-  //     description:
-  //       "Build a dynamic, responsive, and user-friendly website that drives traffic and generates leads for your business.",
-  //   },
-  //   {
-  //     title: "SEO",
-  //     img: "assets/SEO.svg",
-  //     description:
-  //       "Optimize your website to rank higher in search engines and attract more organic traffic, increasing your visibility and business growth.",
-  //   },
-  //   {
-  //     title: "Digital Marketing",
-  //     img: "assets/digital.svg",
-  //     description:
-  //       "Enhance your brands visibility and engagement across multiple online platforms with targeted strategies tailored to your business goals.",
-  //   },
-  //   {
-  //     title: "Graphic Design",
-  //     img: "assets/graphic.svg",
-  //     description:
-  //       "Our creative team delivers visually compelling designs that align with your brand and make a lasting impression.",
-  //   },
-  // ];
-  console.log("myProjects", myProjects);
-
-  // const myProjects = [
-  //   {
-  //     id: 1,
-  //     title: "E-Commerce Website",
-  //     description: "An online store offering a wide range of products.",
-  //     technologies: ["React", "Node.js", "MongoDB"],
-  //     database: "MongoDB",
-  //     uiux: "Responsive and user-friendly design",
-  //     type: "Web",
-  //     image: "/assets/developer.jpg",
-  //   },
-  //   {
-  //     id: 2,
-  //     title: "Fitness Tracker App",
-  //     description: "A mobile app to track fitness activities and goals.",
-  //     technologies: ["React Native", "Firebase"],
-  //     database: "Firebase",
-  //     uiux: "Interactive and intuitive interface",
-  //     type: "Mobile App",
-  //     image: "/assets/about.jpg",
-  //   },
-  // ];
-
   return (
     <div>
       <div className="bg-white pt-9 px-4">
@@ -135,10 +78,7 @@ export default function Home() {
                 alt=""
               />
             </div>
-            {/* Other sections */}
-            {/* Mission & Vision Section */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
-              {/* Mission Card */}
               <div className="bg-white cursor-pointer p-6 rounded-lg shadow-md">
                 <h2 className="text-xl text-green-500 font-bold mb-3">
                   Our Mission
@@ -149,7 +89,6 @@ export default function Home() {
                 </p>
               </div>
 
-              {/* Vision Card */}
               <div className="bg-white cursor-pointer p-6 rounded-lg shadow-md">
                 <h2 className="text-xl text-green-500 font-bold mb-3">
                   Our Vision
@@ -162,7 +101,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Services Section */}
             <div className="mt-8">
               <h2 className="text-2xl font-bold text-black mb-4">
                 Our Services
@@ -183,7 +121,6 @@ export default function Home() {
             What We Have Done
           </h2>
           <div className="max-w-6xl mx-auto flex md:flex-row flex-col items-center justify-between overflow-hidden">
-            {/* Left Content */}
             <div
               key={myProjects[currentIndex]?.id}
               className="w-full md:w-1/2 pb-3 md:pb-0 transition-all duration-1000 transform"
@@ -215,7 +152,6 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Right Image */}
             <div
               className="w-full md:w-1/2 transition-all duration-1000 transform"
               style={{ transform: "translateX(0)" }}

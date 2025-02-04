@@ -15,7 +15,7 @@ const page = () => {
             deliver impactful results.
           </p>
           <p className="mt-2 text-black leading-7 text-lg">
-            Whether you’re a startup or an established business, our customized
+            Whether youre a startup or an established business, our customized
             solutions are tailored to meet your unique objectives. Backed by a
             team of creative minds, data-driven strategies, and cutting-edge
             tools, we ensure measurable success across all digital platforms.
