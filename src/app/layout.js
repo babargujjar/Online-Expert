@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { usePathname } from "next/navigation";
 import TopBar from "@/components/TopBar";
+import { metadata } from "./layout.server";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,10 +18,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
-  title: "Online Experts",
-  description: "online experts Pvt. limited",
-};
 
 
 export default function RootLayout({ children }) {
