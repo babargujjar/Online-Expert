@@ -1,0 +1,6 @@
+---
+deployment:
+ tasks:
+    - export DEPLOYPATH=/home/daxmowa/expert.daximoware.com/1
+    - /bin/cp index.html $DEPLOYPATH
+     - /bin/cp style.css $DEPLOYPATH
