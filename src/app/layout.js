@@ -16,6 +16,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const metadata = {
+  title: "Online Experts",
+  description: "online experts Pvt. limited",
+};
+
 
 export default function RootLayout({ children }) {
     const pathname = usePathname(); 
