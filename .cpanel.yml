@@ -1,5 +1,0 @@
----
-deployment:
- tasks:
-    - export DEPLOYPATH=/home/daxmowa/expert.daximoware.com
-    - /bin/cp * $DEPLOYPATH
